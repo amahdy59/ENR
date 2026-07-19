@@ -42,7 +42,7 @@ export const Route = createFileRoute("/{-$locale}/")({
         { rel: "alternate", hrefLang: "en", href: "/" },
         { rel: "alternate", hrefLang: "ar", href: "/ar" },
         { rel: "alternate", hrefLang: "x-default", href: "/" },
-        { rel: "preload", as: "image", href: heroImg, fetchpriority: "high" },
+        { rel: "preload", as: "image", href: heroImg, fetchPriority: "high" },
       ],
     };
   },

@@ -1292,6 +1292,7 @@ function SearchResultsPage() {
                   <span
                     role="checkbox"
                     aria-checked={checked}
+                    aria-label={TRAIN_KIND_LABEL[k][loc]}
                     tabIndex={0}
                     onClick={() => {
                       const next = new Set(filter.kinds);
