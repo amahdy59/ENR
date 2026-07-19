@@ -74,7 +74,13 @@ const darkVars = parseVars(darkBlock);
 
 function hexToRgb(hex) {
   const m = hex.replace("#", "").trim();
-  const n = m.length === 3 ? m.split("").map((c) => c + c).join("") : m;
+  const n =
+    m.length === 3
+      ? m
+          .split("")
+          .map((c) => c + c)
+          .join("")
+      : m;
   const int = parseInt(n, 16);
   return [(int >> 16) & 255, (int >> 8) & 255, int & 255];
 }
@@ -119,21 +125,51 @@ const PAIRS = [
   // Nav bar (always dark navy) + nav text
   { name: "text-inverse on bg-nav-bar", fg: "text-inverse", bg: "bg-nav-bar", min: 7 },
   { name: "text-nav-inactive on bg-nav-bar", fg: "text-nav-inactive", bg: "bg-nav-bar", min: 7 },
-  { name: "text-on-dark-accent on bg-nav-bar", fg: "text-on-dark-accent", bg: "bg-nav-bar", min: 7 },
+  {
+    name: "text-on-dark-accent on bg-nav-bar",
+    fg: "text-on-dark-accent",
+    bg: "bg-nav-bar",
+    min: 7,
+  },
 
   // Buttons / CTAs (large text -> 4.5, but hold to 7 where practical)
   { name: "primary-foreground on primary", fg: "primary-foreground", bg: "primary", min: 4.5 },
-  { name: "interactive-cta-text on interactive-cta", fg: "interactive-cta-text", bg: "interactive-cta", min: 4.5 },
+  {
+    name: "interactive-cta-text on interactive-cta",
+    fg: "interactive-cta-text",
+    bg: "interactive-cta",
+    min: 4.5,
+  },
 
   // Status pills
-  { name: "status-success on status-success-bg", fg: "status-success", bg: "status-success-bg", min: 7 },
-  { name: "status-warning on status-warning-bg", fg: "status-warning", bg: "status-warning-bg", min: 7 },
+  {
+    name: "status-success on status-success-bg",
+    fg: "status-success",
+    bg: "status-success-bg",
+    min: 7,
+  },
+  {
+    name: "status-warning on status-warning-bg",
+    fg: "status-warning",
+    bg: "status-warning-bg",
+    min: 7,
+  },
   { name: "status-error on status-error-bg", fg: "status-error", bg: "status-error-bg", min: 7 },
   { name: "status-info on status-info-bg", fg: "status-info", bg: "status-info-bg", min: 7 },
 
   // Focus ring visibility against base (non-text UI: 3:1 minimum, we hold 4.5)
-  { name: "interactive-focus-ring vs bg-base", fg: "interactive-focus-ring", bg: "bg-base", min: 3 },
-  { name: "interactive-focus-ring vs bg-nav-bar", fg: "interactive-focus-ring", bg: "bg-nav-bar", min: 3 },
+  {
+    name: "interactive-focus-ring vs bg-base",
+    fg: "interactive-focus-ring",
+    bg: "bg-base",
+    min: 3,
+  },
+  {
+    name: "interactive-focus-ring vs bg-nav-bar",
+    fg: "interactive-focus-ring",
+    bg: "bg-nav-bar",
+    min: 3,
+  },
 ];
 
 /** Special token that's constant across themes. */
@@ -175,7 +211,9 @@ for (const r of [...light.results, ...dark.results]) {
 const allFailures = [...light.failures, ...dark.failures];
 if (allFailures.length) {
   console.error("\nContrast failures:\n  - " + allFailures.join("\n  - "));
-  console.error(`\n${allFailures.length} pair(s) below the WCAG AAA target. Adjust tokens in src/styles.css.`);
+  console.error(
+    `\n${allFailures.length} pair(s) below the WCAG AAA target. Adjust tokens in src/styles.css.`,
+  );
   process.exit(1);
 }
 

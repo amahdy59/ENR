@@ -72,14 +72,44 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-12 flex flex-col items-start gap-4 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between">
-          <p className="text-xs text-white/60">
-            {t("common:footer.rights", { year })}
-          </p>
+          <p className="text-xs text-white/60">{t("common:footer.rights", { year })}</p>
           <div className="flex items-center gap-3 text-white/70">
-            <a aria-label={t("common:footer.social.facebook")} href="https://facebook.com/EgyptianRailways" target="_blank" rel="noopener noreferrer" className="inline-flex h-11 w-11 items-center justify-center rounded-md hover:text-white"><Facebook className="size-5" /></a>
-            <a aria-label={t("common:footer.social.twitter")} href="https://twitter.com/EgyptianRailways" target="_blank" rel="noopener noreferrer" className="inline-flex h-11 w-11 items-center justify-center rounded-md hover:text-white"><Twitter className="size-5" /></a>
-            <a aria-label={t("common:footer.social.instagram")} href="https://instagram.com/EgyptianRailways" target="_blank" rel="noopener noreferrer" className="inline-flex h-11 w-11 items-center justify-center rounded-md hover:text-white"><Instagram className="size-5" /></a>
-            <a aria-label={t("common:footer.social.youtube")} href="https://youtube.com/@EgyptianRailways" target="_blank" rel="noopener noreferrer" className="inline-flex h-11 w-11 items-center justify-center rounded-md hover:text-white"><Youtube className="size-5" /></a>
+            <a
+              aria-label={t("common:footer.social.facebook")}
+              href="https://facebook.com/EgyptianRailways"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-md hover:text-white"
+            >
+              <Facebook className="size-5" />
+            </a>
+            <a
+              aria-label={t("common:footer.social.twitter")}
+              href="https://twitter.com/EgyptianRailways"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-md hover:text-white"
+            >
+              <Twitter className="size-5" />
+            </a>
+            <a
+              aria-label={t("common:footer.social.instagram")}
+              href="https://instagram.com/EgyptianRailways"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-md hover:text-white"
+            >
+              <Instagram className="size-5" />
+            </a>
+            <a
+              aria-label={t("common:footer.social.youtube")}
+              href="https://youtube.com/@EgyptianRailways"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-md hover:text-white"
+            >
+              <Youtube className="size-5" />
+            </a>
           </div>
         </div>
       </div>

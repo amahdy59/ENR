@@ -8,22 +8,9 @@ import { z } from "zod";
 
 const bilingual = z.object({ en: z.string(), ar: z.string() });
 
-const trainKind = z.enum([
-  "vip-talgo",
-  "spanish-ac",
-  "russian-ac",
-  "russian",
-  "sleeper",
-]);
+const trainKind = z.enum(["vip-talgo", "spanish-ac", "russian-ac", "russian", "sleeper"]);
 
-const fareClass = z.enum([
-  "3rd",
-  "2nd-ac",
-  "1st-ac",
-  "vip",
-  "sleeper-double",
-  "sleeper-single",
-]);
+const fareClass = z.enum(["3rd", "2nd-ac", "1st-ac", "vip", "sleeper-double", "sleeper-single"]);
 
 const timeHHMM = z.string().regex(/^\d{2}:\d{2}$/, "expected HH:MM");
 
@@ -62,7 +49,6 @@ export function assertTripMatches<T>(rows: T[]): T[] {
   if (import.meta.env?.DEV) {
     const result = tripMatchListSchema.safeParse(rows);
     if (!result.success) {
-      // eslint-disable-next-line no-console
       console.error("[trips] TripMatch validation failed", result.error.issues.slice(0, 3));
     }
   }

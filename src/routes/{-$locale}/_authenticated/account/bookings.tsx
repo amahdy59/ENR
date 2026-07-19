@@ -22,7 +22,12 @@ export const Route = createFileRoute("/{-$locale}/_authenticated/account/booking
     return {
       meta: [
         { title: isAr ? "حجوزاتي — الهيئة القومية لسكك حديد مصر" : "My bookings — ENR" },
-        { name: "description", content: isAr ? "اعرض حجوزاتك القادمة والسابقة والملغاة." : "View your upcoming, past and cancelled ENR bookings." },
+        {
+          name: "description",
+          content: isAr
+            ? "اعرض حجوزاتك القادمة والسابقة والملغاة."
+            : "View your upcoming, past and cancelled ENR bookings.",
+        },
         { name: "robots", content: "noindex" },
       ],
     };
@@ -39,15 +44,29 @@ function BookingsPage() {
   const [loading, setLoading] = useState(true);
 
   const tabs: { id: TabId; label: string; empty: string }[] = [
-    { id: "upcoming", label: bi("Upcoming", "القادمة"), empty: bi("No upcoming bookings yet.", "لا توجد حجوزات قادمة حتى الآن.") },
-    { id: "past", label: bi("Past", "السابقة"), empty: bi("No past bookings yet.", "لا توجد حجوزات سابقة حتى الآن.") },
-    { id: "cancelled", label: bi("Cancelled", "الملغاة"), empty: bi("No cancelled bookings.", "لا توجد حجوزات ملغاة.") },
+    {
+      id: "upcoming",
+      label: bi("Upcoming", "القادمة"),
+      empty: bi("No upcoming bookings yet.", "لا توجد حجوزات قادمة حتى الآن."),
+    },
+    {
+      id: "past",
+      label: bi("Past", "السابقة"),
+      empty: bi("No past bookings yet.", "لا توجد حجوزات سابقة حتى الآن."),
+    },
+    {
+      id: "cancelled",
+      label: bi("Cancelled", "الملغاة"),
+      empty: bi("No cancelled bookings.", "لا توجد حجوزات ملغاة."),
+    },
   ];
 
   useEffect(() => {
     supabase
       .from("bookings")
-      .select("id, reference, from_station, to_station, travel_date, travel_time, class, status, price_egp")
+      .select(
+        "id, reference, from_station, to_station, travel_date, travel_time, class, status, price_egp",
+      )
       .order("travel_date", { ascending: false })
       .then(({ data }) => {
         setBookings((data as Booking[]) ?? []);
@@ -84,7 +103,9 @@ function BookingsPage() {
         </div>
 
         {loading ? (
-          <p className="text-sm text-[color:var(--color-text-tertiary)]">{bi("Loading bookings…", "جارٍ تحميل الحجوزات…")}</p>
+          <p className="text-sm text-[color:var(--color-text-tertiary)]">
+            {bi("Loading bookings…", "جارٍ تحميل الحجوزات…")}
+          </p>
         ) : filtered.length === 0 ? (
           <div className="grid place-items-center rounded-2xl border border-dashed border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] p-12 text-center">
             <p className="text-sm text-[color:var(--color-text-secondary)]">{currentEmpty}</p>
@@ -92,9 +113,15 @@ function BookingsPage() {
         ) : (
           <ul className="space-y-3">
             {filtered.map((b) => (
-              <li key={b.id} className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] p-5">
+              <li
+                key={b.id}
+                className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] p-5"
+              >
                 <div>
-                  <p className="text-xs font-semibold text-[color:var(--color-text-accent)]" dir="ltr">
+                  <p
+                    className="text-xs font-semibold text-[color:var(--color-text-accent)]"
+                    dir="ltr"
+                  >
                     {b.reference}
                   </p>
                   <p className="mt-1 font-bold text-[color:var(--color-text-brand)]">

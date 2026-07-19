@@ -103,7 +103,9 @@ async function traceAnimation(browser) {
   const worst = Math.max(...trace);
   const dropped = trace.filter((d) => d > 20).length; // >20ms ≈ dropped @ 60fps
   console.log(`\n— animation trace (1s while train travels) —`);
-  console.log(`  frames: ${frames}  avg: ${avg.toFixed(2)}ms  worst: ${worst.toFixed(2)}ms  dropped>20ms: ${dropped}`);
+  console.log(
+    `  frames: ${frames}  avg: ${avg.toFixed(2)}ms  worst: ${worst.toFixed(2)}ms  dropped>20ms: ${dropped}`,
+  );
   if (dropped > 3) fail(`Route-card animation dropped ${dropped} frames (>20ms) in 1s window`);
   else pass(`Route-card animation smooth (avg ${avg.toFixed(1)}ms, ${dropped} slow frames)`);
 
@@ -118,4 +120,5 @@ try {
 } finally {
   await browser.close();
 }
-if (process.exitCode) console.error("\nMotion audit failed."); else console.log("\nMotion audit passed.");
+if (process.exitCode) console.error("\nMotion audit failed.");
+else console.log("\nMotion audit passed.");

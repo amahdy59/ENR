@@ -32,7 +32,6 @@ export function track(event: string, props?: AnalyticsProps): void {
   if (!hasConsent()) return;
   if (import.meta.env.DEV) {
     // Visible in the browser console while building; harmless in production.
-    // eslint-disable-next-line no-console
     console.debug("[analytics]", event, props ?? {});
   }
   // Provider integration goes here. Example (Plausible):

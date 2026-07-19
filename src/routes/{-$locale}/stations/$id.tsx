@@ -1,6 +1,14 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ArrowLeft, Building2, Calendar, Clock, MapPin, Navigation, TrainFront } from "lucide-react";
+import {
+  ArrowLeft,
+  Building2,
+  Calendar,
+  Clock,
+  MapPin,
+  Navigation,
+  TrainFront,
+} from "lucide-react";
 import { StubPage, stubHead } from "@/components/site/StubPage";
 import { useBi } from "@/i18n/bi";
 import { useLocale } from "@/i18n/locale-context";
@@ -57,7 +65,10 @@ function StationDetail() {
   if (!station) throw notFound();
 
   const heroImg = HERO_IMAGES[station.id] ?? LINE_IMAGES[station.line] ?? stationDefault;
-  const lineLabel = STATION_LINES.find((l) => l.id === station.line)?.label ?? { en: station.line, ar: station.line };
+  const lineLabel = STATION_LINES.find((l) => l.id === station.line)?.label ?? {
+    en: station.line,
+    ar: station.line,
+  };
   const facilities = station.facilities ?? [];
   const mapUrl = station.coords
     ? `https://www.openstreetmap.org/?mlat=${station.coords.lat}&mlon=${station.coords.lng}#map=15/${station.coords.lat}/${station.coords.lng}`
@@ -70,9 +81,21 @@ function StationDetail() {
     let cancelled = false;
     setDepLoading(true);
     departuresFrom(station.id)
-      .then((r) => { if (!cancelled) { setDepartures(r.slice(0, 6)); setDepLoading(false); } })
-      .catch(() => { if (!cancelled) { setDepartures([]); setDepLoading(false); } });
-    return () => { cancelled = true; };
+      .then((r) => {
+        if (!cancelled) {
+          setDepartures(r.slice(0, 6));
+          setDepLoading(false);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setDepartures([]);
+          setDepLoading(false);
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [station.id]);
 
   // Other stations on the same line, ordered as in the catalogue.
@@ -114,7 +137,10 @@ function StationDetail() {
           aria-labelledby="about-heading"
           className="rounded-2xl border border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] p-6 lg:col-span-2"
         >
-          <h2 id="about-heading" className="flex items-center gap-2 text-lg font-bold text-[color:var(--color-text-brand)]">
+          <h2
+            id="about-heading"
+            className="flex items-center gap-2 text-lg font-bold text-[color:var(--color-text-brand)]"
+          >
             <Building2 className="size-5" aria-hidden="true" />
             {bi("About this station", "عن هذه المحطة")}
           </h2>
@@ -123,12 +149,20 @@ function StationDetail() {
           </p>
           <dl className="mt-5 grid grid-cols-2 gap-4 text-sm">
             <div>
-              <dt className="text-xs font-semibold uppercase tracking-wide text-[color:var(--color-text-secondary)]">{bi("City", "المدينة")}</dt>
-              <dd className="mt-1 font-semibold text-[color:var(--color-text-primary)]">{station.city[locale]}</dd>
+              <dt className="text-xs font-semibold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
+                {bi("City", "المدينة")}
+              </dt>
+              <dd className="mt-1 font-semibold text-[color:var(--color-text-primary)]">
+                {station.city[locale]}
+              </dd>
             </div>
             <div>
-              <dt className="text-xs font-semibold uppercase tracking-wide text-[color:var(--color-text-secondary)]">{bi("Line", "الخط")}</dt>
-              <dd className="mt-1 font-semibold text-[color:var(--color-text-primary)]">{lineLabel[locale]}</dd>
+              <dt className="text-xs font-semibold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
+                {bi("Line", "الخط")}
+              </dt>
+              <dd className="mt-1 font-semibold text-[color:var(--color-text-primary)]">
+                {lineLabel[locale]}
+              </dd>
             </div>
             {station.opened && (
               <div>
@@ -136,12 +170,18 @@ function StationDetail() {
                   <Calendar className="me-1 inline size-3.5" aria-hidden="true" />
                   {bi("Opened", "افتُتحت")}
                 </dt>
-                <dd className="mt-1 font-semibold text-[color:var(--color-text-primary)]">{station.opened}</dd>
+                <dd className="mt-1 font-semibold text-[color:var(--color-text-primary)]">
+                  {station.opened}
+                </dd>
               </div>
             )}
             <div>
-              <dt className="text-xs font-semibold uppercase tracking-wide text-[color:var(--color-text-secondary)]">{bi("Station code", "كود المحطة")}</dt>
-              <dd className="mt-1 font-mono font-semibold text-[color:var(--color-text-primary)]">{station.code}</dd>
+              <dt className="text-xs font-semibold uppercase tracking-wide text-[color:var(--color-text-secondary)]">
+                {bi("Station code", "كود المحطة")}
+              </dt>
+              <dd className="mt-1 font-mono font-semibold text-[color:var(--color-text-primary)]">
+                {station.code}
+              </dd>
             </div>
           </dl>
         </section>
@@ -151,7 +191,10 @@ function StationDetail() {
           aria-labelledby="location-heading"
           className="rounded-2xl border border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] p-6"
         >
-          <h2 id="location-heading" className="flex items-center gap-2 text-lg font-bold text-[color:var(--color-text-brand)]">
+          <h2
+            id="location-heading"
+            className="flex items-center gap-2 text-lg font-bold text-[color:var(--color-text-brand)]"
+          >
             <MapPin className="size-5" aria-hidden="true" />
             {bi("Location", "الموقع")}
           </h2>
@@ -164,7 +207,8 @@ function StationDetail() {
             </p>
           ) : (
             <p className="mt-3 text-sm text-[color:var(--color-text-secondary)]">
-              {bi("Located in ", "تقع في ")}{station.city[locale]}.
+              {bi("Located in ", "تقع في ")}
+              {station.city[locale]}.
             </p>
           )}
           <a
@@ -183,7 +227,10 @@ function StationDetail() {
           aria-labelledby="facilities-heading"
           className="rounded-2xl border border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] p-6 lg:col-span-2"
         >
-          <h2 id="facilities-heading" className="flex items-center gap-2 text-lg font-bold text-[color:var(--color-text-brand)]">
+          <h2
+            id="facilities-heading"
+            className="flex items-center gap-2 text-lg font-bold text-[color:var(--color-text-brand)]"
+          >
             <Building2 className="size-5" aria-hidden="true" />
             {bi("Facilities", "المرافق")}
           </h2>
@@ -198,8 +245,13 @@ function StationDetail() {
                   key={f}
                   className="flex items-center gap-2 rounded-lg border border-[color:var(--color-border-default)] bg-[color:var(--color-background-surface)] px-3 py-2 text-sm"
                 >
-                  <span aria-hidden="true" className="size-2 rounded-full bg-[color:var(--color-brand-secondary)]" />
-                  <span className="font-medium text-[color:var(--color-text-primary)]">{STATION_FACILITY_LABELS[f][locale]}</span>
+                  <span
+                    aria-hidden="true"
+                    className="size-2 rounded-full bg-[color:var(--color-brand-secondary)]"
+                  />
+                  <span className="font-medium text-[color:var(--color-text-primary)]">
+                    {STATION_FACILITY_LABELS[f][locale]}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -211,12 +263,18 @@ function StationDetail() {
           aria-labelledby="plan-heading"
           className="rounded-2xl border border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] p-6"
         >
-          <h2 id="plan-heading" className="flex items-center gap-2 text-lg font-bold text-[color:var(--color-text-brand)]">
+          <h2
+            id="plan-heading"
+            className="flex items-center gap-2 text-lg font-bold text-[color:var(--color-text-brand)]"
+          >
             <TrainFront className="size-5" aria-hidden="true" />
             {bi("Plan a journey", "خطط رحلتك")}
           </h2>
           <p className="mt-3 text-sm text-[color:var(--color-text-secondary)]">
-            {bi("Search trains departing from or arriving at this station.", "ابحث عن القطارات المغادرة من هذه المحطة أو المتجهة إليها.")}
+            {bi(
+              "Search trains departing from or arriving at this station.",
+              "ابحث عن القطارات المغادرة من هذه المحطة أو المتجهة إليها.",
+            )}
           </p>
           <LocaleLink
             to={`/search?from=${encodeURIComponent(station.id)}`}
@@ -240,13 +298,19 @@ function StationDetail() {
           className="mt-6 rounded-2xl border border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] p-6"
           aria-busy="true"
         >
-          <h2 id="departures-loading-heading" className="flex items-center gap-2 text-lg font-bold text-[color:var(--color-text-brand)]">
+          <h2
+            id="departures-loading-heading"
+            className="flex items-center gap-2 text-lg font-bold text-[color:var(--color-text-brand)]"
+          >
             <Clock className="size-5" aria-hidden="true" />
             {bi("Loading departures…", "جارٍ تحميل المغادرات…")}
           </h2>
           <ul className="mt-4 space-y-3" aria-hidden="true">
             {Array.from({ length: 4 }).map((_, i) => (
-              <li key={i} className="h-10 animate-pulse rounded-md bg-[color:var(--color-background-surface)] motion-reduce:animate-none" />
+              <li
+                key={i}
+                className="h-10 animate-pulse rounded-md bg-[color:var(--color-background-surface)] motion-reduce:animate-none"
+              />
             ))}
           </ul>
         </section>
@@ -257,7 +321,10 @@ function StationDetail() {
           aria-labelledby="departures-heading"
           className="mt-6 rounded-2xl border border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] p-6"
         >
-          <h2 id="departures-heading" className="flex items-center gap-2 text-lg font-bold text-[color:var(--color-text-brand)]">
+          <h2
+            id="departures-heading"
+            className="flex items-center gap-2 text-lg font-bold text-[color:var(--color-text-brand)]"
+          >
             <Clock className="size-5" aria-hidden="true" />
             {bi("Sample departures from this station", "نماذج مغادرات من هذه المحطة")}
           </h2>
@@ -271,12 +338,16 @@ function StationDetail() {
             {departures.map((t) => (
               <li key={t.number} className="flex flex-wrap items-center justify-between gap-3 py-3">
                 <div className="flex items-center gap-3">
-                  <span className="rounded-md bg-[color:var(--color-brand-primary-tint)] px-2 py-1 font-mono text-sm font-bold text-[color:var(--color-text-brand)]" dir="ltr">
+                  <span
+                    className="rounded-md bg-[color:var(--color-brand-primary-tint)] px-2 py-1 font-mono text-sm font-bold text-[color:var(--color-text-brand)]"
+                    dir="ltr"
+                  >
                     {t.depart}
                   </span>
                   <div className="flex flex-col">
                     <span className="text-sm font-semibold text-[color:var(--color-text-primary)]">
-                      {bi("To ", "إلى ")}{stationLabel(t.to, locale)}
+                      {bi("To ", "إلى ")}
+                      {stationLabel(t.to, locale)}
                     </span>
                     <span className="text-xs text-[color:var(--color-text-secondary)]">
                       {TRAIN_KIND_LABEL[t.kind][locale]} · {t.number}
@@ -301,7 +372,10 @@ function StationDetail() {
           aria-labelledby="nearby-heading"
           className="mt-6 rounded-2xl border border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] p-6"
         >
-          <h2 id="nearby-heading" className="flex items-center gap-2 text-lg font-bold text-[color:var(--color-text-brand)]">
+          <h2
+            id="nearby-heading"
+            className="flex items-center gap-2 text-lg font-bold text-[color:var(--color-text-brand)]"
+          >
             <MapPin className="size-5" aria-hidden="true" />
             {bi("Other stations on this line", "محطات أخرى على نفس الخط")}
           </h2>
@@ -312,7 +386,9 @@ function StationDetail() {
                   to={`/stations/${s.id}`}
                   className="interactive-surface flex items-center justify-between gap-2 rounded-lg border border-[color:var(--color-border-default)] bg-[color:var(--color-background-surface)] px-3 py-2 text-sm hover:border-[color:var(--color-brand-primary)]"
                 >
-                  <span className="truncate font-semibold text-[color:var(--color-text-primary)]">{s.name[locale]}</span>
+                  <span className="truncate font-semibold text-[color:var(--color-text-primary)]">
+                    {s.name[locale]}
+                  </span>
                   <span className="text-xs text-[color:var(--color-text-secondary)]">{s.code}</span>
                 </LocaleLink>
               </li>

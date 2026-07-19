@@ -22,15 +22,27 @@ export const Route = createFileRoute("/{-$locale}/class")({
     const isAr = params.locale === "ar";
     return {
       meta: [
-        { title: isAr ? "اختيار الدرجة والمقعد — حجز سكك حديد مصر" : "Select Class & Seat — ENR Booking" },
+        {
+          title: isAr
+            ? "اختيار الدرجة والمقعد — حجز سكك حديد مصر"
+            : "Select Class & Seat — ENR Booking",
+        },
         {
           name: "description",
           content: isAr
             ? "اختر درجة السفر والمقعد على قطارات الهيئة القومية لسكك حديد مصر. الخطوة ٢ من ٤."
             : "Choose your travel class and seat on the Egyptian Railway. Step 2 of 4.",
         },
-        { property: "og:title", content: isAr ? "اختيار الدرجة والمقعد — حجز سكك حديد مصر" : "Select Class & Seat — ENR Booking" },
-        { property: "og:description", content: isAr ? "اختر درجة السفر والمقعد." : "Choose your travel class and seat." },
+        {
+          property: "og:title",
+          content: isAr
+            ? "اختيار الدرجة والمقعد — حجز سكك حديد مصر"
+            : "Select Class & Seat — ENR Booking",
+        },
+        {
+          property: "og:description",
+          content: isAr ? "اختر درجة السفر والمقعد." : "Choose your travel class and seat.",
+        },
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
       ],
@@ -67,7 +79,11 @@ function SiteHeader() {
   return (
     <header style={{ background: NAVY, color: TEXT_INVERSE }}>
       <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
-        <LocaleLink to="/" className="text-[20px] font-bold tracking-wide" style={{ color: TEXT_INVERSE }}>
+        <LocaleLink
+          to="/"
+          className="text-[20px] font-bold tracking-wide"
+          style={{ color: TEXT_INVERSE }}
+        >
           {bi("ENR", "س.ح.م")}
         </LocaleLink>
         <nav className="hidden md:flex items-center gap-8 text-[14px]">
@@ -85,7 +101,12 @@ function SiteHeader() {
             </LocaleLink>
           ))}
         </nav>
-        <LocaleLink to="/class" targetLocale={otherLocale} className="text-[13px]" style={{ color: TEXT_INVERSE }}>
+        <LocaleLink
+          to="/class"
+          targetLocale={otherLocale}
+          className="text-[13px]"
+          style={{ color: TEXT_INVERSE }}
+        >
           {bi("العربية", "English")}
         </LocaleLink>
       </div>
@@ -117,7 +138,10 @@ function useClasses(): ClassOption[] {
       name: bi("Economy", "اقتصادية"),
       price: 245,
       seatsLeft: 42,
-      desc: bi("Comfortable standard seating with air conditioning.", "مقاعد قياسية مريحة مع تكييف الهواء."),
+      desc: bi(
+        "Comfortable standard seating with air conditioning.",
+        "مقاعد قياسية مريحة مع تكييف الهواء.",
+      ),
       features: [
         { icon: Armchair, label: bi("Standard seat", "مقعد قياسي") },
         { icon: Wifi, label: bi("Wi-Fi", "واي فاي") },
@@ -184,23 +208,32 @@ function ClassCard({
       <div className="flex items-start justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="text-[18px] font-bold" style={{ color: TEXT_PRIMARY }}>{opt.name}</h3>
+            <h3 className="text-[18px] font-bold" style={{ color: TEXT_PRIMARY }}>
+              {opt.name}
+            </h3>
             {opt.tag && (
               <span
                 className="rounded-full px-2 py-0.5 text-[11px] font-semibold"
-                style={{ background: `color-mix(in oklab, ${GOLD} 20%, transparent)`, color: AMBER_TEXT }}
+                style={{
+                  background: `color-mix(in oklab, ${GOLD} 20%, transparent)`,
+                  color: AMBER_TEXT,
+                }}
               >
                 {opt.tag}
               </span>
             )}
           </div>
-          <p className="mt-1 text-[13px]" style={{ color: TEXT_SECONDARY }}>{opt.desc}</p>
+          <p className="mt-1 text-[13px]" style={{ color: TEXT_SECONDARY }}>
+            {opt.desc}
+          </p>
         </div>
         <div className="text-end">
           <div className="text-[22px] font-bold" style={{ color: TEXT_PRICE }}>
             {opt.price} <span className="text-[13px] font-medium">{bi("EGP", "ج.م")}</span>
           </div>
-          <div className="text-[11px]" style={{ color: TEXT_TERTIARY }}>{bi("per passenger", "لكل راكب")}</div>
+          <div className="text-[11px]" style={{ color: TEXT_TERTIARY }}>
+            {bi("per passenger", "لكل راكب")}
+          </div>
         </div>
       </div>
 
@@ -217,10 +250,16 @@ function ClassCard({
       </div>
 
       <div className="mt-4 flex items-center justify-between text-[12px]">
-        <span className="inline-flex items-center gap-1.5" style={{ color: opt.seatsLeft < 10 ? "#b91c1c" : TEXT_TERTIARY }}>
+        <span
+          className="inline-flex items-center gap-1.5"
+          style={{ color: opt.seatsLeft < 10 ? "#b91c1c" : TEXT_TERTIARY }}
+        >
           <Users className="h-3.5 w-3.5" /> {opt.seatsLeft} {bi("seats left", "مقاعد متبقية")}
         </span>
-        <span className="inline-flex items-center gap-1 text-[12px] font-semibold" style={{ color: selected ? NAVY : TEXT_TERTIARY }}>
+        <span
+          className="inline-flex items-center gap-1 text-[12px] font-semibold"
+          style={{ color: selected ? NAVY : TEXT_TERTIARY }}
+        >
           {selected ? (
             <>
               <Check className="h-3.5 w-3.5" /> {bi("Selected", "تم الاختيار")}
@@ -248,12 +287,23 @@ function SeatMap({
   const taken = new Set(["1A", "2C", "3B", "4D", "5A", "6C", "7B", "8D", "9A"]);
 
   return (
-    <div className="rounded-lg border p-5" style={{ borderColor: BORDER, background: "var(--color-background-elevated)" }}>
+    <div
+      className="rounded-lg border p-5"
+      style={{ borderColor: BORDER, background: "var(--color-background-elevated)" }}
+    >
       <div className="flex items-center justify-between">
-        <h3 className="text-[16px] font-bold" style={{ color: TEXT_PRIMARY }}>{bi("Choose your seat", "اختر مقعدك")}</h3>
+        <h3 className="text-[16px] font-bold" style={{ color: TEXT_PRIMARY }}>
+          {bi("Choose your seat", "اختر مقعدك")}
+        </h3>
         <div className="flex items-center gap-3 text-[11px]" style={{ color: TEXT_TERTIARY }}>
           <span className="inline-flex items-center gap-1">
-            <span className="h-3 w-3 rounded-sm" style={{ background: "var(--color-background-elevated)", border: `1px solid ${BORDER}` }} />
+            <span
+              className="h-3 w-3 rounded-sm"
+              style={{
+                background: "var(--color-background-elevated)",
+                border: `1px solid ${BORDER}`,
+              }}
+            />
             {bi("Available", "متاح")}
           </span>
           <span className="inline-flex items-center gap-1">
@@ -275,7 +325,9 @@ function SeatMap({
           const row = r + 1;
           return (
             <div key={row} className="flex items-center gap-3">
-              <span className="w-4 text-end text-[11px]" style={{ color: TEXT_TERTIARY }}>{row}</span>
+              <span className="w-4 text-end text-[11px]" style={{ color: TEXT_TERTIARY }}>
+                {row}
+              </span>
               <div className="flex items-center gap-1.5">
                 {COACH_COLS.slice(0, 2).map((c) => {
                   const id = `${row}${c}`;
@@ -289,7 +341,11 @@ function SeatMap({
                       onClick={() => onSelect(id)}
                       className="h-8 w-8 rounded-md text-[11px] font-medium transition-colors"
                       style={{
-                        background: isTaken ? MUTED : isSel ? NAVY : "var(--color-background-elevated)",
+                        background: isTaken
+                          ? MUTED
+                          : isSel
+                            ? NAVY
+                            : "var(--color-background-elevated)",
                         color: isTaken ? TEXT_TERTIARY : isSel ? TEXT_INVERSE : TEXT_PRIMARY,
                         border: `1px solid ${isSel ? NAVY : BORDER}`,
                         cursor: isTaken ? "not-allowed" : "pointer",
@@ -301,7 +357,9 @@ function SeatMap({
                   );
                 })}
               </div>
-              <span className="w-6 text-center text-[10px]" style={{ color: TEXT_TERTIARY }}>{bi("aisle", "ممر")}</span>
+              <span className="w-6 text-center text-[10px]" style={{ color: TEXT_TERTIARY }}>
+                {bi("aisle", "ممر")}
+              </span>
               <div className="flex items-center gap-1.5">
                 {COACH_COLS.slice(2).map((c) => {
                   const id = `${row}${c}`;
@@ -315,7 +373,11 @@ function SeatMap({
                       onClick={() => onSelect(id)}
                       className="h-8 w-8 rounded-md text-[11px] font-medium transition-colors"
                       style={{
-                        background: isTaken ? MUTED : isSel ? NAVY : "var(--color-background-elevated)",
+                        background: isTaken
+                          ? MUTED
+                          : isSel
+                            ? NAVY
+                            : "var(--color-background-elevated)",
                         color: isTaken ? TEXT_TERTIARY : isSel ? TEXT_INVERSE : TEXT_PRIMARY,
                         border: `1px solid ${isSel ? NAVY : BORDER}`,
                         cursor: isTaken ? "not-allowed" : "pointer",
@@ -339,20 +401,37 @@ function BookingSummary({ price, seat }: { price: number; seat: string | null })
   const bi = useBi();
   const fee = 10;
   return (
-    <aside className="rounded-lg border p-5" style={{ borderColor: BORDER, background: "var(--color-background-elevated)" }}>
-      <h2 className="text-[16px] font-bold" style={{ color: TEXT_PRIMARY }}>{bi("Booking Summary", "ملخص الحجز")}</h2>
+    <aside
+      className="rounded-lg border p-5"
+      style={{ borderColor: BORDER, background: "var(--color-background-elevated)" }}
+    >
+      <h2 className="text-[16px] font-bold" style={{ color: TEXT_PRIMARY }}>
+        {bi("Booking Summary", "ملخص الحجز")}
+      </h2>
       <div className="mt-4 flex items-center justify-between">
-        <span className="text-[20px] font-bold" style={{ color: TEXT_PRIMARY }} dir="ltr">09:45</span>
+        <span className="text-[20px] font-bold" style={{ color: TEXT_PRIMARY }} dir="ltr">
+          09:45
+        </span>
         <ArrowRight className="h-4 w-4 rtl-flip" style={{ color: TEXT_TERTIARY }} />
-        <span className="text-[20px] font-bold" style={{ color: TEXT_PRIMARY }} dir="ltr">12:30</span>
+        <span className="text-[20px] font-bold" style={{ color: TEXT_PRIMARY }} dir="ltr">
+          12:30
+        </span>
       </div>
-      <div className="mt-1 text-[12px]" style={{ color: TEXT_TERTIARY }}>{bi("Cairo Central → Alexandria Misr", "القاهرة الرئيسية ← الإسكندرية مصر")}</div>
-      <div className="text-[12px]" style={{ color: TEXT_TERTIARY }}>{bi("Direct • 2h 45m", "مباشر • ٢س ٤٥د")}</div>
+      <div className="mt-1 text-[12px]" style={{ color: TEXT_TERTIARY }}>
+        {bi("Cairo Central → Alexandria Misr", "القاهرة الرئيسية ← الإسكندرية مصر")}
+      </div>
+      <div className="text-[12px]" style={{ color: TEXT_TERTIARY }}>
+        {bi("Direct • 2h 45m", "مباشر • ٢س ٤٥د")}
+      </div>
 
       <div className="my-4 h-px w-full" style={{ background: BORDER }} />
 
-      <div className="text-[13px]" style={{ color: TEXT_PRIMARY }}>{bi("Tuesday 15 October 2025", "الثلاثاء ١٥ أكتوبر ٢٠٢٥")}</div>
-      <div className="text-[13px]" style={{ color: TEXT_SECONDARY }}>{bi("1 Adult", "١ بالغ")}</div>
+      <div className="text-[13px]" style={{ color: TEXT_PRIMARY }}>
+        {bi("Tuesday 15 October 2025", "الثلاثاء ١٥ أكتوبر ٢٠٢٥")}
+      </div>
+      <div className="text-[13px]" style={{ color: TEXT_SECONDARY }}>
+        {bi("1 Adult", "١ بالغ")}
+      </div>
       <div className="text-[13px]" style={{ color: TEXT_SECONDARY }}>
         {bi("Seat", "المقعد")} {seat ?? "—"}
       </div>
@@ -361,18 +440,26 @@ function BookingSummary({ price, seat }: { price: number; seat: string | null })
 
       <div className="flex items-center justify-between text-[13px]">
         <span style={{ color: TEXT_SECONDARY }}>{bi("1× fare", "١× التذكرة")}</span>
-        <span className="font-semibold" style={{ color: TEXT_PRIMARY }}>{price} {bi("EGP", "ج.م")}</span>
+        <span className="font-semibold" style={{ color: TEXT_PRIMARY }}>
+          {price} {bi("EGP", "ج.م")}
+        </span>
       </div>
       <div className="mt-1.5 flex items-center justify-between text-[13px]">
         <span style={{ color: TEXT_SECONDARY }}>{bi("Booking fee", "رسوم الحجز")}</span>
-        <span className="font-semibold" style={{ color: TEXT_PRIMARY }}>{fee} {bi("EGP", "ج.م")}</span>
+        <span className="font-semibold" style={{ color: TEXT_PRIMARY }}>
+          {fee} {bi("EGP", "ج.م")}
+        </span>
       </div>
 
       <div className="my-4 h-px w-full" style={{ background: BORDER }} />
 
       <div className="flex items-center justify-between">
-        <span className="text-[15px] font-bold" style={{ color: TEXT_PRIMARY }}>{bi("Total", "الإجمالي")}</span>
-        <span className="text-[22px] font-bold" style={{ color: TEXT_PRICE }}>{price + fee} {bi("EGP", "ج.م")}</span>
+        <span className="text-[15px] font-bold" style={{ color: TEXT_PRIMARY }}>
+          {bi("Total", "الإجمالي")}
+        </span>
+        <span className="text-[22px] font-bold" style={{ color: TEXT_PRICE }}>
+          {price + fee} {bi("EGP", "ج.م")}
+        </span>
       </div>
 
       <div
@@ -389,7 +476,9 @@ function BookingSummary({ price, seat }: { price: number; seat: string | null })
       >
         <Clock className="h-4 w-4 mt-0.5" style={{ color: "var(--color-status-error-vivid)" }} />
         <span>
-          {bi("Your seats are held for ", "مقاعدك محجوزة لمدة ")}<strong dir="ltr">14:28</strong>{bi(". Need more time? Tap to extend.", ". تحتاج وقتاً إضافياً؟ اضغط للتمديد.")}
+          {bi("Your seats are held for ", "مقاعدك محجوزة لمدة ")}
+          <strong dir="ltr">14:28</strong>
+          {bi(". Need more time? Tap to extend.", ". تحتاج وقتاً إضافياً؟ اضغط للتمديد.")}
         </span>
       </div>
     </aside>
@@ -433,7 +522,12 @@ function ClassPage() {
 
           <div className="mt-6 grid gap-4">
             {CLASSES.map((c) => (
-              <ClassCard key={c.id} opt={c} selected={classId === c.id} onSelect={() => setClassId(c.id)} />
+              <ClassCard
+                key={c.id}
+                opt={c}
+                selected={classId === c.id}
+                onSelect={() => setClassId(c.id)}
+              />
             ))}
           </div>
 
@@ -450,7 +544,8 @@ function ClassPage() {
               boxShadow: `0 4px 12px color-mix(in oklab, ${GOLD} 25%, transparent)`,
             }}
           >
-            {bi("Continue to Passenger Details", "المتابعة إلى بيانات الراكب")} <ArrowRight className="h-4 w-4 rtl-flip" />
+            {bi("Continue to Passenger Details", "المتابعة إلى بيانات الراكب")}{" "}
+            <ArrowRight className="h-4 w-4 rtl-flip" />
           </LocaleLink>
 
           <div className="mt-4 text-center">
@@ -459,7 +554,8 @@ function ClassPage() {
               className="inline-flex items-center gap-1.5 text-[13px]"
               style={{ color: TEXT_SECONDARY }}
             >
-              <ArrowLeft className="h-3.5 w-3.5 rtl-flip" /> {bi("Back to search results", "العودة إلى نتائج البحث")}
+              <ArrowLeft className="h-3.5 w-3.5 rtl-flip" />{" "}
+              {bi("Back to search results", "العودة إلى نتائج البحث")}
             </LocaleLink>
           </div>
         </section>

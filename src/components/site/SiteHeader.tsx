@@ -7,7 +7,13 @@ import { LocaleLink, localizedPath } from "@/i18n/LocaleLink";
 import { useLocale } from "@/i18n/locale-context";
 import type { Locale } from "@/i18n/config";
 
-function isNavActive(pathname: string, to: string, match: string | undefined, exact: boolean | undefined, locale: Locale): boolean {
+function isNavActive(
+  pathname: string,
+  to: string,
+  match: string | undefined,
+  exact: boolean | undefined,
+  locale: Locale,
+): boolean {
   const target = localizedPath(match ?? to, locale);
   if (exact) return pathname === target || pathname === target + "/";
   return pathname === target || pathname.startsWith(target + "/");
@@ -30,7 +36,10 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-[color:var(--color-background-nav-bar)] shadow-sm">
-      <nav className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-6 md:px-10 lg:px-20" aria-label={t("common:brand") as string}>
+      <nav
+        className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-6 md:px-10 lg:px-20"
+        aria-label={t("common:brand") as string}
+      >
         <LocaleLink to="/" className="link-underline text-2xl font-semibold text-white">
           {t("common:brand")}
         </LocaleLink>
@@ -112,7 +121,11 @@ export function SiteHeader() {
             ))}
             <li>
               <LocaleLink
-                to={typeof window !== "undefined" ? stripLocaleFromPath(window.location.pathname) : "/"}
+                to={
+                  typeof window !== "undefined"
+                    ? stripLocaleFromPath(window.location.pathname)
+                    : "/"
+                }
                 targetLocale={otherLocale}
                 hrefLang={otherLocale}
                 lang={otherLocale}

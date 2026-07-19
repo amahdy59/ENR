@@ -14,7 +14,10 @@ export function BookingProgress({ current }: { current: BookingStepIndex }) {
   const labels = [
     { label: bi("Journey", "الرحلة"), sub: bi("Choose your journey", "اختر رحلتك") },
     { label: bi("Class", "الدرجة"), sub: bi("Select class & seat", "اختر الدرجة والمقعد") },
-    { label: bi("Passenger Details", "بيانات الراكب"), sub: bi("Enter passenger info", "أدخل بيانات الراكب") },
+    {
+      label: bi("Passenger Details", "بيانات الراكب"),
+      sub: bi("Enter passenger info", "أدخل بيانات الراكب"),
+    },
     { label: bi("Payment", "الدفع"), sub: bi("Complete payment", "إتمام الدفع") },
   ];
   const steps: Step[] = labels.map((l, i) => ({
@@ -23,7 +26,7 @@ export function BookingProgress({ current }: { current: BookingStepIndex }) {
   }));
   const statusLabel = bi(
     `Step ${current} of 4 — ${labels[current - 1].label}`,
-    `الخطوة ${["١","٢","٣","٤"][current - 1]} من ٤ — ${labels[current - 1].label}`,
+    `الخطوة ${["١", "٢", "٣", "٤"][current - 1]} من ٤ — ${labels[current - 1].label}`,
   );
   return <PageStepper steps={steps} statusLabel={statusLabel} />;
 }

@@ -13,7 +13,7 @@ export function BackToTop() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const label = (t("actions.backToTop", { defaultValue: "Back to top" }) as string);
+  const label = t("actions.backToTop", { defaultValue: "Back to top" }) as string;
 
   const handleClick = () => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

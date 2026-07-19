@@ -22,19 +22,28 @@ export const FARE_CLASSES: readonly FareClass[] = [
   {
     id: "first",
     label: { en: "First Class", ar: "الدرجة الأولى" },
-    description: { en: "Larger seat, complimentary refreshments.", ar: "مقعد أوسع مع مرطبات مجانية." },
+    description: {
+      en: "Larger seat, complimentary refreshments.",
+      ar: "مقعد أوسع مع مرطبات مجانية.",
+    },
     multiplier: 2,
   },
   {
     id: "business",
     label: { en: "Business", ar: "درجة الأعمال" },
-    description: { en: "Priority boarding, at-seat service, Wi-Fi.", ar: "أولوية الصعود وخدمة على المقعد وواي فاي." },
+    description: {
+      en: "Priority boarding, at-seat service, Wi-Fi.",
+      ar: "أولوية الصعود وخدمة على المقعد وواي فاي.",
+    },
     multiplier: 2.6,
   },
   {
     id: "sleeper",
     label: { en: "Sleeper", ar: "عربة النوم" },
-    description: { en: "Private cabin with berth for overnight trains.", ar: "كابينة خاصة بسرير للقطارات الليلية." },
+    description: {
+      en: "Private cabin with berth for overnight trains.",
+      ar: "كابينة خاصة بسرير للقطارات الليلية.",
+    },
     multiplier: 2.55,
   },
 ];

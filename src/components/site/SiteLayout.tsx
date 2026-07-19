@@ -10,9 +10,13 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <AnnouncerProvider>
       <div className="flex min-h-dvh flex-col bg-[color:var(--color-background-base)] font-sans text-[color:var(--color-text-primary)]">
-        <a href="#main-content" className="skip-to-content">Skip to main content</a>
+        <a href="#main-content" className="skip-to-content">
+          Skip to main content
+        </a>
         <SiteHeader />
-        <main id="main-content" tabIndex={-1} className="flex-1 pb-16 md:pb-0 focus:outline-none">{children}</main>
+        <main id="main-content" tabIndex={-1} className="flex-1 pb-16 md:pb-0 focus:outline-none">
+          {children}
+        </main>
         <SiteFooter />
         <MobileTabBar />
         <BackToTop />
@@ -21,8 +25,6 @@ export function SiteLayout({ children }: { children: ReactNode }) {
     </AnnouncerProvider>
   );
 }
-
-
 
 export function PageHeader({
   title,

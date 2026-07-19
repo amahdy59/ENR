@@ -78,7 +78,10 @@ export function stubHead(
       meta: [
         { title: `${title} — ${isAr ? "الهيئة القومية لسكك حديد مصر" : "ENR"}` },
         { name: "description", content: description },
-        { property: "og:title", content: `${title} — ${isAr ? "الهيئة القومية لسكك حديد مصر" : "ENR"}` },
+        {
+          property: "og:title",
+          content: `${title} — ${isAr ? "الهيئة القومية لسكك حديد مصر" : "ENR"}`,
+        },
         { property: "og:description", content: description },
         { property: "og:type", content: "website" },
         { property: "og:url", content: canonical },
@@ -94,4 +97,3 @@ export function stubHead(
     };
   };
 }
-

@@ -19,7 +19,10 @@ function InvestorsPage() {
     <StubPage
       eyebrow={bi("Company", "عن الهيئة")}
       title={bi("Investors", "المستثمرون")}
-      subtitle={bi("Financial reports and stakeholder information.", "التقارير المالية ومعلومات المستثمرين.")}
+      subtitle={bi(
+        "Financial reports and stakeholder information.",
+        "التقارير المالية ومعلومات المستثمرين.",
+      )}
     >
       <p className="text-sm text-[color:var(--color-text-secondary)]">
         {bi(

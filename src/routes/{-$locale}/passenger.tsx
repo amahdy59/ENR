@@ -28,10 +28,15 @@ export const Route = createFileRoute("/{-$locale}/passenger")({
             ? "أدخل بيانات الراكب لإتمام حجز رحلتك بالقطار. الخطوة ٣ من ٤."
             : "Enter passenger details to complete your Egyptian Railway booking. Step 3 of 4.",
         },
-        { property: "og:title", content: isAr ? "بيانات الراكب — حجز سكك حديد مصر" : "Passenger Details — ENR Booking" },
+        {
+          property: "og:title",
+          content: isAr ? "بيانات الراكب — حجز سكك حديد مصر" : "Passenger Details — ENR Booking",
+        },
         {
           property: "og:description",
-          content: isAr ? "أدخل بيانات الراكب لإتمام الحجز." : "Enter passenger details to complete your Egyptian Railway booking.",
+          content: isAr
+            ? "أدخل بيانات الراكب لإتمام الحجز."
+            : "Enter passenger details to complete your Egyptian Railway booking.",
         },
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
@@ -69,7 +74,11 @@ function SiteHeader() {
   return (
     <header style={{ background: NAVY, color: TEXT_INVERSE }}>
       <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
-        <LocaleLink to="/" className="text-[20px] font-bold tracking-wide" style={{ color: TEXT_INVERSE }}>
+        <LocaleLink
+          to="/"
+          className="text-[20px] font-bold tracking-wide"
+          style={{ color: TEXT_INVERSE }}
+        >
           {bi("ENR", "س.ح.م")}
         </LocaleLink>
         <nav className="hidden md:flex items-center gap-8 text-[14px]">
@@ -87,7 +96,12 @@ function SiteHeader() {
             </LocaleLink>
           ))}
         </nav>
-        <LocaleLink to="/passenger" targetLocale={otherLocale} className="text-[13px]" style={{ color: TEXT_INVERSE }}>
+        <LocaleLink
+          to="/passenger"
+          targetLocale={otherLocale}
+          className="text-[13px]"
+          style={{ color: TEXT_INVERSE }}
+        >
           {bi("العربية", "English")}
         </LocaleLink>
       </div>
@@ -152,7 +166,11 @@ function TextField({
         placeholder={placeholder}
         defaultValue={defaultValue}
         className="w-full rounded-md border px-3 py-2.5 text-[14px] outline-none transition-colors focus:border-[color:var(--color-brand-primary)]"
-        style={{ borderColor: BORDER, background: "var(--color-background-elevated)", color: TEXT_PRIMARY }}
+        style={{
+          borderColor: BORDER,
+          background: "var(--color-background-elevated)",
+          color: TEXT_PRIMARY,
+        }}
       />
       <HelpCircle
         className="pointer-events-none absolute end-3 top-1/2 -translate-y-1/2 h-4 w-4"
@@ -197,39 +215,66 @@ function Checkbox({
 function BookingSummary() {
   const bi = useBi();
   return (
-    <aside className="rounded-lg border p-5" style={{ borderColor: BORDER, background: "var(--color-background-elevated)" }}>
-      <h2 className="text-[16px] font-bold" style={{ color: TEXT_PRIMARY }}>{bi("Booking Summary", "ملخص الحجز")}</h2>
+    <aside
+      className="rounded-lg border p-5"
+      style={{ borderColor: BORDER, background: "var(--color-background-elevated)" }}
+    >
+      <h2 className="text-[16px] font-bold" style={{ color: TEXT_PRIMARY }}>
+        {bi("Booking Summary", "ملخص الحجز")}
+      </h2>
 
       <div className="mt-4 flex items-center justify-between">
-        <span className="text-[20px] font-bold" style={{ color: TEXT_PRIMARY }} dir="ltr">09:45</span>
+        <span className="text-[20px] font-bold" style={{ color: TEXT_PRIMARY }} dir="ltr">
+          09:45
+        </span>
         <ArrowRight className="h-4 w-4 rtl-flip" style={{ color: TEXT_TERTIARY }} />
-        <span className="text-[20px] font-bold" style={{ color: TEXT_PRIMARY }} dir="ltr">12:30</span>
+        <span className="text-[20px] font-bold" style={{ color: TEXT_PRIMARY }} dir="ltr">
+          12:30
+        </span>
       </div>
-      <div className="mt-1 text-[12px]" style={{ color: TEXT_TERTIARY }}>{bi("Cairo Central → Alexandria Misr", "القاهرة الرئيسية ← الإسكندرية مصر")}</div>
-      <div className="text-[12px]" style={{ color: TEXT_TERTIARY }}>{bi("Direct • 2h 45m", "مباشر • ٢س ٤٥د")}</div>
+      <div className="mt-1 text-[12px]" style={{ color: TEXT_TERTIARY }}>
+        {bi("Cairo Central → Alexandria Misr", "القاهرة الرئيسية ← الإسكندرية مصر")}
+      </div>
+      <div className="text-[12px]" style={{ color: TEXT_TERTIARY }}>
+        {bi("Direct • 2h 45m", "مباشر • ٢س ٤٥د")}
+      </div>
 
       <div className="my-4 h-px w-full" style={{ background: BORDER }} />
 
-      <div className="text-[13px]" style={{ color: TEXT_PRIMARY }}>{bi("Tuesday 15 October 2025", "الثلاثاء ١٥ أكتوبر ٢٠٢٥")}</div>
-      <div className="text-[13px]" style={{ color: TEXT_SECONDARY }}>{bi("1 Adult", "١ بالغ")}</div>
-      <div className="text-[13px]" style={{ color: TEXT_SECONDARY }}>{bi("Economy Class", "الدرجة الاقتصادية")}</div>
+      <div className="text-[13px]" style={{ color: TEXT_PRIMARY }}>
+        {bi("Tuesday 15 October 2025", "الثلاثاء ١٥ أكتوبر ٢٠٢٥")}
+      </div>
+      <div className="text-[13px]" style={{ color: TEXT_SECONDARY }}>
+        {bi("1 Adult", "١ بالغ")}
+      </div>
+      <div className="text-[13px]" style={{ color: TEXT_SECONDARY }}>
+        {bi("Economy Class", "الدرجة الاقتصادية")}
+      </div>
 
       <div className="my-4 h-px w-full" style={{ background: BORDER }} />
 
       <div className="flex items-center justify-between text-[13px]">
         <span style={{ color: TEXT_SECONDARY }}>{bi("1× Economy", "١× اقتصادية")}</span>
-        <span className="font-semibold" style={{ color: TEXT_PRIMARY }}>{bi("245 EGP", "٢٤٥ ج.م")}</span>
+        <span className="font-semibold" style={{ color: TEXT_PRIMARY }}>
+          {bi("245 EGP", "٢٤٥ ج.م")}
+        </span>
       </div>
       <div className="mt-1.5 flex items-center justify-between text-[13px]">
         <span style={{ color: TEXT_SECONDARY }}>{bi("Booking fee", "رسوم الحجز")}</span>
-        <span className="font-semibold" style={{ color: TEXT_PRIMARY }}>{bi("10 EGP", "١٠ ج.م")}</span>
+        <span className="font-semibold" style={{ color: TEXT_PRIMARY }}>
+          {bi("10 EGP", "١٠ ج.م")}
+        </span>
       </div>
 
       <div className="my-4 h-px w-full" style={{ background: BORDER }} />
 
       <div className="flex items-center justify-between">
-        <span className="text-[15px] font-bold" style={{ color: TEXT_PRIMARY }}>{bi("Total", "الإجمالي")}</span>
-        <span className="text-[22px] font-bold" style={{ color: TEXT_PRICE }}>{bi("255 EGP", "٢٥٥ ج.م")}</span>
+        <span className="text-[15px] font-bold" style={{ color: TEXT_PRIMARY }}>
+          {bi("Total", "الإجمالي")}
+        </span>
+        <span className="text-[22px] font-bold" style={{ color: TEXT_PRICE }}>
+          {bi("255 EGP", "٢٥٥ ج.م")}
+        </span>
       </div>
 
       <div
@@ -246,7 +291,9 @@ function BookingSummary() {
       >
         <Clock className="h-4 w-4 mt-0.5" style={{ color: "var(--color-status-error-vivid)" }} />
         <span>
-          {bi("Your seats are held for ", "مقاعدك محجوزة لمدة ")}<strong dir="ltr">14:28</strong>{bi(". Need more time? Tap to extend.", ". تحتاج وقتاً إضافياً؟ اضغط للتمديد.")}
+          {bi("Your seats are held for ", "مقاعدك محجوزة لمدة ")}
+          <strong dir="ltr">14:28</strong>
+          {bi(". Need more time? Tap to extend.", ". تحتاج وقتاً إضافياً؟ اضغط للتمديد.")}
         </span>
       </div>
     </aside>
@@ -273,7 +320,9 @@ function PassengerPage() {
         style={{ gridTemplateColumns: "1fr 340px" }}
       >
         <section>
-          <h1 className="text-[32px] font-bold" style={{ color: TEXT_PRIMARY }}>{bi("Passenger Details", "بيانات الراكب")}</h1>
+          <h1 className="text-[32px] font-bold" style={{ color: TEXT_PRIMARY }}>
+            {bi("Passenger Details", "بيانات الراكب")}
+          </h1>
           <p className="mt-3 text-[14px]" style={{ color: TEXT_SECONDARY }}>
             {bi(
               "Enter the lead passenger's details to complete your booking. Ensure the name matches your National ID or passport exactly.",
@@ -282,12 +331,18 @@ function PassengerPage() {
           </p>
           <p className="mt-3 text-[13px]" style={{ color: TEXT_TERTIARY }}>
             <span style={{ color: AMBER_TEXT }}>*</span>{" "}
-            {bi("Required fields are marked with an asterisk", "الحقول المطلوبة مميّزة بعلامة نجمة")}
+            {bi(
+              "Required fields are marked with an asterisk",
+              "الحقول المطلوبة مميّزة بعلامة نجمة",
+            )}
           </p>
 
           <div className="mt-8">
             <div className="flex items-center gap-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full text-[13px] font-bold" style={{ background: NAVY, color: TEXT_INVERSE }}>
+              <div
+                className="flex h-8 w-8 items-center justify-center rounded-full text-[13px] font-bold"
+                style={{ background: NAVY, color: TEXT_INVERSE }}
+              >
                 1
               </div>
               <h2 className="text-[18px] font-bold" style={{ color: TEXT_PRIMARY }}>
@@ -299,12 +354,22 @@ function PassengerPage() {
               <div>
                 <Label required>{bi("First Name", "الاسم الأول")}</Label>
                 <TextField id="fname" placeholder={bi("e.g. Ahmed", "مثلاً: أحمد")} />
-                <Hint>{bi("As shown on your National ID or passport", "كما هو مدوّن على الرقم القومي أو جواز السفر")}</Hint>
+                <Hint>
+                  {bi(
+                    "As shown on your National ID or passport",
+                    "كما هو مدوّن على الرقم القومي أو جواز السفر",
+                  )}
+                </Hint>
               </div>
               <div>
                 <Label required>{bi("Last Name", "اسم العائلة")}</Label>
                 <TextField id="lname" placeholder={bi("e.g. Mansour", "مثلاً: منصور")} />
-                <Hint>{bi("As shown on your National ID or passport", "كما هو مدوّن على الرقم القومي أو جواز السفر")}</Hint>
+                <Hint>
+                  {bi(
+                    "As shown on your National ID or passport",
+                    "كما هو مدوّن على الرقم القومي أو جواز السفر",
+                  )}
+                </Hint>
               </div>
             </div>
 
@@ -325,9 +390,19 @@ function PassengerPage() {
                 <button
                   type="button"
                   aria-label={bi("Change country code", "تغيير رمز الدولة")}
-                  onClick={() => import("sonner").then(({ toast }) => toast(bi("Country code picker — prototype", "قائمة رموز الدول — نموذج تجريبي")))}
+                  onClick={() =>
+                    import("sonner").then(({ toast }) =>
+                      toast(
+                        bi("Country code picker — prototype", "قائمة رموز الدول — نموذج تجريبي"),
+                      ),
+                    )
+                  }
                   className="inline-flex items-center gap-1 rounded-md border px-3 py-2.5 text-[14px]"
-                  style={{ borderColor: BORDER, background: "var(--color-background-elevated)", color: TEXT_PRIMARY }}
+                  style={{
+                    borderColor: BORDER,
+                    background: "var(--color-background-elevated)",
+                    color: TEXT_PRIMARY,
+                  }}
                 >
                   <span dir="ltr">+20</span> <ChevronDown className="h-4 w-4" />
                 </button>
@@ -336,13 +411,23 @@ function PassengerPage() {
                   <TextField id="phone" placeholder="01X XXXX XXXX" />
                 </div>
               </div>
-              <Hint>{bi("e.g. +20 100 123 4567 (include country code)", "مثلاً: +20 100 123 4567 (مع رمز الدولة)")}</Hint>
+              <Hint>
+                {bi(
+                  "e.g. +20 100 123 4567 (include country code)",
+                  "مثلاً: +20 100 123 4567 (مع رمز الدولة)",
+                )}
+              </Hint>
             </div>
 
             <div className="mt-5">
               <Label required>{bi("National ID / Passport", "الرقم القومي / جواز السفر")}</Label>
               <TextField id="natid" placeholder={bi("Enter ID number", "أدخل رقم الهوية")} />
-              <Hint>{bi("14-digit Egyptian National ID, or passport number", "الرقم القومي المصري المكوّن من ١٤ رقماً، أو رقم جواز السفر")}</Hint>
+              <Hint>
+                {bi(
+                  "14-digit Egyptian National ID, or passport number",
+                  "الرقم القومي المصري المكوّن من ١٤ رقماً، أو رقم جواز السفر",
+                )}
+              </Hint>
             </div>
           </div>
 
@@ -355,9 +440,18 @@ function PassengerPage() {
               <Checkbox
                 id="cp-email"
                 checked
-                label={bi("Send booking confirmation to ahmed.m@example.com", "إرسال تأكيد الحجز إلى ahmed.m@example.com")}
+                label={bi(
+                  "Send booking confirmation to ahmed.m@example.com",
+                  "إرسال تأكيد الحجز إلى ahmed.m@example.com",
+                )}
               />
-              <Checkbox id="cp-sms" label={bi("Receive journey updates by SMS", "تلقّي تحديثات الرحلة عبر الرسائل النصية")} />
+              <Checkbox
+                id="cp-sms"
+                label={bi(
+                  "Receive journey updates by SMS",
+                  "تلقّي تحديثات الرحلة عبر الرسائل النصية",
+                )}
+              />
             </div>
 
             <p className="mt-3 text-[12px]" style={{ color: TEXT_TERTIARY }}>
@@ -370,9 +464,22 @@ function PassengerPage() {
 
           <button
             type="button"
-            onClick={() => import("sonner").then(({ toast }) => toast(bi("We'll email an accessibility form within 24 hours.", "سنرسل لك نموذج المساعدة خلال ٢٤ ساعة.")))}
+            onClick={() =>
+              import("sonner").then(({ toast }) =>
+                toast(
+                  bi(
+                    "We'll email an accessibility form within 24 hours.",
+                    "سنرسل لك نموذج المساعدة خلال ٢٤ ساعة.",
+                  ),
+                ),
+              )
+            }
             className="mt-8 flex w-full items-center gap-3 rounded-md border px-4 py-3 text-start text-[14px] font-medium"
-            style={{ borderColor: BORDER, background: "var(--color-background-elevated)", color: AMBER_TEXT }}
+            style={{
+              borderColor: BORDER,
+              background: "var(--color-background-elevated)",
+              color: AMBER_TEXT,
+            }}
           >
             <Plus className="h-4 w-4" />
             {bi(
@@ -403,7 +510,8 @@ function PassengerPage() {
               boxShadow: `0 4px 12px color-mix(in oklab, ${GOLD} 25%, transparent)`,
             }}
           >
-            {bi("Continue to Payment", "المتابعة إلى الدفع")} <ArrowRight className="h-4 w-4 rtl-flip" />
+            {bi("Continue to Payment", "المتابعة إلى الدفع")}{" "}
+            <ArrowRight className="h-4 w-4 rtl-flip" />
           </LocaleLink>
 
           <div className="mt-4 text-center">
@@ -412,7 +520,8 @@ function PassengerPage() {
               className="inline-flex items-center gap-1.5 text-[13px]"
               style={{ color: TEXT_SECONDARY }}
             >
-              <ArrowLeft className="h-3.5 w-3.5 rtl-flip" /> {bi("Back to class selection", "العودة إلى اختيار الدرجة")}
+              <ArrowLeft className="h-3.5 w-3.5 rtl-flip" />{" "}
+              {bi("Back to class selection", "العودة إلى اختيار الدرجة")}
             </LocaleLink>
           </div>
         </section>

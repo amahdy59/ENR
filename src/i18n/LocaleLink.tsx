@@ -29,15 +29,16 @@ export type LocaleLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
  * around TanStack's typed route table because the localized target is
  * computed at runtime.
  */
-export const LocaleLink = forwardRef<HTMLAnchorElement, LocaleLinkProps>(
-  function LocaleLink({ to, targetLocale, ...rest }, ref) {
-    const { locale } = useLocale();
-    const effective = targetLocale ?? locale;
-    const href = localizedPath(to, effective);
-    const LinkAny = Link as unknown as React.ComponentType<Record<string, unknown>>;
-    return <LinkAny ref={ref} to={href} {...rest} />;
-  },
-);
+export const LocaleLink = forwardRef<HTMLAnchorElement, LocaleLinkProps>(function LocaleLink(
+  { to, targetLocale, ...rest },
+  ref,
+) {
+  const { locale } = useLocale();
+  const effective = targetLocale ?? locale;
+  const href = localizedPath(to, effective);
+  const LinkAny = Link as unknown as React.ComponentType<Record<string, unknown>>;
+  return <LinkAny ref={ref} to={href} {...rest} />;
+});
 
 export function useLocalizedNavigate() {
   const navigate = useNavigate();

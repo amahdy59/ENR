@@ -15,8 +15,6 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
 import "@/i18n/config";
 
-
-
 function NotFoundComponent() {
   const { t } = useTranslation();
   return (
@@ -75,16 +73,23 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "ENR — Egyptian Railway" },
-      { name: "description", content: "Egyptian Railway — book tickets, plan journeys, and manage travel across Egypt's national rail network." },
+      {
+        name: "description",
+        content:
+          "Egyptian Railway — book tickets, plan journeys, and manage travel across Egypt's national rail network.",
+      },
       { property: "og:title", content: "ENR — Egyptian Railway" },
-      { property: "og:description", content: "Book tickets, plan journeys, and manage travel across Egypt's national rail network." },
+      {
+        property: "og:description",
+        content:
+          "Book tickets, plan journeys, and manage travel across Egypt's national rail network.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#0D1F3C" },
@@ -158,7 +163,6 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
-
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const router = useRouter();
@@ -183,4 +187,3 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
-

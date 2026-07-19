@@ -29,30 +29,36 @@ function CookiesPage() {
           <h2 className="text-xl font-bold text-[color:var(--color-text-brand)]">
             {bi("Essential cookies", "ملفات تعريف الارتباط الأساسية")}
           </h2>
-          <p>{bi(
-            "Required to keep you signed in, remember your language, and complete a booking. These can't be turned off.",
-            "لازمة للحفاظ على تسجيل دخولك وتذكّر لغتك وإتمام الحجز. لا يمكن تعطيلها.",
-          )}</p>
+          <p>
+            {bi(
+              "Required to keep you signed in, remember your language, and complete a booking. These can't be turned off.",
+              "لازمة للحفاظ على تسجيل دخولك وتذكّر لغتك وإتمام الحجز. لا يمكن تعطيلها.",
+            )}
+          </p>
         </section>
 
         <section>
           <h2 className="text-xl font-bold text-[color:var(--color-text-brand)]">
             {bi("Analytics cookies (with consent)", "ملفات التحليلات (بموافقتك)")}
           </h2>
-          <p>{bi(
-            "Used only if you accept the banner. They help us understand which routes are searched and which pages break so we can fix them.",
-            "تُستخدم فقط في حال قبولك للشريط. تساعدنا في فهم الرحلات التي يتم البحث عنها والصفحات التي تحتاج إصلاحًا.",
-          )}</p>
+          <p>
+            {bi(
+              "Used only if you accept the banner. They help us understand which routes are searched and which pages break so we can fix them.",
+              "تُستخدم فقط في حال قبولك للشريط. تساعدنا في فهم الرحلات التي يتم البحث عنها والصفحات التي تحتاج إصلاحًا.",
+            )}
+          </p>
         </section>
 
         <section>
           <h2 className="text-xl font-bold text-[color:var(--color-text-brand)]">
             {bi("Managing cookies", "إدارة ملفات تعريف الارتباط")}
           </h2>
-          <p>{bi(
-            "You can clear the site's storage from your browser settings at any time to reset your consent choice.",
-            "يمكنك في أي وقت مسح تخزين الموقع من إعدادات المتصفح لإعادة ضبط اختيار الموافقة.",
-          )}</p>
+          <p>
+            {bi(
+              "You can clear the site's storage from your browser settings at any time to reset your consent choice.",
+              "يمكنك في أي وقت مسح تخزين الموقع من إعدادات المتصفح لإعادة ضبط اختيار الموافقة.",
+            )}
+          </p>
         </section>
       </article>
     </StubPage>

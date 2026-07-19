@@ -19,7 +19,10 @@ function AboutPage() {
     <StubPage
       eyebrow={bi("Company", "عن الهيئة")}
       title={bi("About Egyptian National Railways", "عن الهيئة القومية لسكك حديد مصر")}
-      subtitle={bi("Connecting Egypt by rail since 1854.", "نربط مصر بالسكك الحديدية منذ عام 1854.")}
+      subtitle={bi(
+        "Connecting Egypt by rail since 1854.",
+        "نربط مصر بالسكك الحديدية منذ عام 1854.",
+      )}
     >
       <p className="max-w-3xl text-sm text-[color:var(--color-text-secondary)]">
         {bi(

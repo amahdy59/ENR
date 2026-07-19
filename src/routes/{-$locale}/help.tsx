@@ -57,7 +57,10 @@ function HelpPage() {
     <StubPage
       eyebrow={bi("Support", "الدعم")}
       title={bi("Help centre", "مركز المساعدة")}
-      subtitle={bi("Answers to common questions about booking, refunds, and travel.", "إجابات عن الأسئلة الشائعة حول الحجز والاسترداد والسفر.")}
+      subtitle={bi(
+        "Answers to common questions about booking, refunds, and travel.",
+        "إجابات عن الأسئلة الشائعة حول الحجز والاسترداد والسفر.",
+      )}
     >
       <div className="divide-y divide-[color:var(--color-border-default)] rounded-2xl border border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)]">
         {faqs.map((f) => (

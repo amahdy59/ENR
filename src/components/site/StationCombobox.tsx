@@ -90,11 +90,19 @@ export function StationCombobox({
 
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={inputId} className="text-sm font-semibold text-[color:var(--color-text-brand)]">
+      <label
+        htmlFor={inputId}
+        className="text-sm font-semibold text-[color:var(--color-text-brand)]"
+      >
         {label}
         {required && (
           <>
-            <span aria-hidden="true" className="ms-0.5 text-[color:var(--color-status-error-vivid)]">*</span>
+            <span
+              aria-hidden="true"
+              className="ms-0.5 text-[color:var(--color-status-error-vivid)]"
+            >
+              *
+            </span>
             <span className="sr-only"> required</span>
           </>
         )}
@@ -104,7 +112,10 @@ export function StationCombobox({
         <PopoverAnchor asChild>
           <div className="relative">
             <span className="pointer-events-none absolute start-3 top-1/2 -translate-y-1/2">
-              <MapPin className="size-[18px] text-[color:var(--color-text-brand)]" aria-hidden="true" />
+              <MapPin
+                className="size-[18px] text-[color:var(--color-text-brand)]"
+                aria-hidden="true"
+              />
             </span>
             <input
               ref={inputRef}
@@ -117,7 +128,9 @@ export function StationCombobox({
               aria-autocomplete="list"
               aria-expanded={open && results.length > 0}
               aria-controls={listId}
-              aria-activedescendant={open && results[active] ? `${listId}-opt-${active}` : undefined}
+              aria-activedescendant={
+                open && results[active] ? `${listId}-opt-${active}` : undefined
+              }
               aria-invalid={invalid || undefined}
               aria-required={required || undefined}
               aria-describedby={invalid ? `${errorId} ${helperId}` : helperId}
@@ -186,7 +199,9 @@ export function StationCombobox({
                     <MapPin
                       className={cn(
                         "icon-pop size-4 shrink-0",
-                        isActive ? "text-[color:var(--color-brand-secondary)]" : "text-[color:var(--color-text-brand)]",
+                        isActive
+                          ? "text-[color:var(--color-brand-secondary)]"
+                          : "text-[color:var(--color-text-brand)]",
                       )}
                       aria-hidden="true"
                     />
@@ -220,12 +235,18 @@ export function StationCombobox({
       </Popover>
 
       {invalid && (
-        <p id={errorId} role="alert" className="flex items-start gap-1.5 text-xs font-semibold text-[color:var(--color-status-error)]">
+        <p
+          id={errorId}
+          role="alert"
+          className="flex items-start gap-1.5 text-xs font-semibold text-[color:var(--color-status-error)]"
+        >
           <AlertTriangle className="mt-[1px] size-3.5 shrink-0" aria-hidden="true" />
           <span>{error}</span>
         </p>
       )}
-      <p id={helperId} className="text-xs text-[color:var(--color-text-secondary)]">{helper}</p>
+      <p id={helperId} className="text-xs text-[color:var(--color-text-secondary)]">
+        {helper}
+      </p>
     </div>
   );
 }

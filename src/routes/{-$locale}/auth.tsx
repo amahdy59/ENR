@@ -13,9 +13,12 @@ export const Route = createFileRoute("/{-$locale}/auth")({
     return {
       meta: [
         { title: isAr ? "تسجيل الدخول — الهيئة القومية لسكك حديد مصر" : "Sign in — ENR" },
-        { name: "description", content: isAr
-          ? "سجّل الدخول أو أنشئ حساباً لحجز التذاكر وحفظ بيانات المسافرين ومراجعة الحجوزات."
-          : "Sign in or create an ENR account to book tickets, save travellers, and view bookings." },
+        {
+          name: "description",
+          content: isAr
+            ? "سجّل الدخول أو أنشئ حساباً لحجز التذاكر وحفظ بيانات المسافرين ومراجعة الحجوزات."
+            : "Sign in or create an ENR account to book tickets, save travellers, and view bookings.",
+        },
         { name: "robots", content: "noindex" },
       ],
     };
@@ -84,7 +87,11 @@ function AuthPage() {
       redirect_uri: window.location.origin,
     });
     if (result.error) {
-      setError(result.error instanceof Error ? result.error.message : bi("Google sign-in failed", "فشل تسجيل الدخول عبر جوجل"));
+      setError(
+        result.error instanceof Error
+          ? result.error.message
+          : bi("Google sign-in failed", "فشل تسجيل الدخول عبر جوجل"),
+      );
       return;
     }
     if (result.redirected) return;
@@ -102,7 +109,10 @@ function AuthPage() {
         <p className="mt-1 text-sm text-[color:var(--color-text-secondary)]">
           {mode === "signin"
             ? bi("Access saved bookings and travellers.", "اطّلع على حجوزاتك والمسافرين المحفوظين.")
-            : bi("Save travellers, view bookings, and book faster.", "احفظ بيانات المسافرين، وشاهد حجوزاتك، واحجز بشكل أسرع.")}
+            : bi(
+                "Save travellers, view bookings, and book faster.",
+                "احفظ بيانات المسافرين، وشاهد حجوزاتك، واحجز بشكل أسرع.",
+              )}
         </p>
 
         <button
@@ -155,7 +165,9 @@ function AuthPage() {
             />
           </label>
           {error && (
-            <p role="alert" className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>
+            <p role="alert" className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-700">
+              {error}
+            </p>
           )}
           <button
             type="submit"

@@ -5,12 +5,14 @@ Doing all of this well in one turn is not realistic (~20+ hrs of work and severa
 ## Stage 1 — Ship autonomously now (no external accounts needed)
 
 **Performance**
+
 - Add `vite-imagetools`; convert route/news hero JPGs to AVIF+WebP with `<picture>` fallback.
 - `<link rel="preload" as="image" fetchpriority="high">` for the LCP image on `/` (per-locale route head).
 - Bundle audit: dynamic-import `stations.generated.ts` / `trips.generated.ts` so the ~500 KB dataset loads only when Search/Stations pages mount, not on the home page.
 - Move `Calendar`, `Popover` combobox internals off the initial home bundle where possible.
 
 **SEO**
+
 - `robots.txt` (allow all, sitemap directive).
 - Dynamic `sitemap.xml` server route enumerating every EN + AR route + every station.
 - Add `<link rel="alternate" hreflang="en|ar|x-default">` and self-referencing `canonical` on every route via a shared `LocaleHead` helper.
@@ -18,21 +20,26 @@ Doing all of this well in one turn is not realistic (~20+ hrs of work and severa
 - Run the SEO scanner and clean up the findings.
 
 **A11y**
+
 - Global `aria-live` polite/assertive regions for form-error announcements and route changes.
 - Skeleton loaders for station detail, timetable, account (using existing `states.tsx` primitives).
 - Audit BackToTop + sticky header vs. mobile tab bar on 375px (adjust spacing, ensure no overlap).
 
 **Print**
+
 - `@media print` stylesheet + `print-only` classes on `confirmation.tsx` (hide chrome, single-page ticket layout with QR/train/passenger blocks).
 
 **Testing**
+
 - Vitest setup + unit tests for `findTrips`, `resolveStationId`, `fares` computation.
 - Playwright config + two smoke specs: EN and AR "Cairo → Alexandria → pick class → passenger → payment" flows.
 
 **Empty/loading/error states**
+
 - Add skeleton + empty + error states to stations index, station detail, timetable, account bookings/journeys.
 
 **Legal pages (skeletons only)**
+
 - Privacy, Terms, Refund, Cookie Notice as real routes with proper head/canonical/hreflang, marked "draft — pending legal review", using clear boilerplate structure. Real copy needs your input (see Stage 3).
 
 ## Stage 2 — Needs one green light from you (fast)

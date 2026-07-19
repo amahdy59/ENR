@@ -22,9 +22,7 @@ export const Route = createFileRoute("/{-$locale}")({
   head: ({ params }) => {
     const locale: Locale = isLocale(params.locale) ? params.locale : DEFAULT_LOCALE;
     return {
-      meta: [
-        { name: "language", content: locale },
-      ],
+      meta: [{ name: "language", content: locale }],
       links: [
         // hreflang alternates. Uses relative paths — resolved by crawlers.
         { rel: "alternate", hrefLang: "en", href: "/" },

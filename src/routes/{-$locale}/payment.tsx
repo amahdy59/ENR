@@ -28,8 +28,14 @@ export const Route = createFileRoute("/{-$locale}/payment")({
             ? "أكمل دفع حجز رحلتك بالقطار بأمان. الخطوة ٤ من ٤."
             : "Complete your Egyptian Railway booking payment securely. Step 4 of 4.",
         },
-        { property: "og:title", content: isAr ? "الدفع — حجز سكك حديد مصر" : "Payment — ENR Booking" },
-        { property: "og:description", content: isAr ? "أكمل الدفع بأمان." : "Complete your ENR booking payment securely." },
+        {
+          property: "og:title",
+          content: isAr ? "الدفع — حجز سكك حديد مصر" : "Payment — ENR Booking",
+        },
+        {
+          property: "og:description",
+          content: isAr ? "أكمل الدفع بأمان." : "Complete your ENR booking payment securely.",
+        },
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
       ],
@@ -66,7 +72,11 @@ function SiteHeader() {
   return (
     <header style={{ background: NAVY, color: TEXT_INVERSE }}>
       <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
-        <LocaleLink to="/" className="text-[20px] font-bold tracking-wide" style={{ color: TEXT_INVERSE }}>
+        <LocaleLink
+          to="/"
+          className="text-[20px] font-bold tracking-wide"
+          style={{ color: TEXT_INVERSE }}
+        >
           {bi("ENR", "س.ح.م")}
         </LocaleLink>
         <nav className="hidden md:flex items-center gap-8 text-[14px]">
@@ -84,7 +94,12 @@ function SiteHeader() {
             </LocaleLink>
           ))}
         </nav>
-        <LocaleLink to="/payment" targetLocale={otherLocale} className="text-[13px]" style={{ color: TEXT_INVERSE }}>
+        <LocaleLink
+          to="/payment"
+          targetLocale={otherLocale}
+          className="text-[13px]"
+          style={{ color: TEXT_INVERSE }}
+        >
           {bi("العربية", "English")}
         </LocaleLink>
       </div>
@@ -124,7 +139,11 @@ function TextField({
       placeholder={placeholder}
       defaultValue={defaultValue}
       className="w-full rounded-md border px-3 py-2.5 text-[14px] outline-none transition-colors focus:border-[color:var(--color-brand-primary)]"
-      style={{ borderColor: BORDER, background: "var(--color-background-elevated)", color: TEXT_PRIMARY }}
+      style={{
+        borderColor: BORDER,
+        background: "var(--color-background-elevated)",
+        color: TEXT_PRIMARY,
+      }}
     />
   );
 }
@@ -150,7 +169,9 @@ function MethodTab({
       className="flex flex-1 items-center justify-center gap-2 rounded-md border px-4 py-3 text-[13px] font-semibold transition-colors"
       style={{
         borderColor: active ? NAVY : BORDER,
-        background: active ? "color-mix(in oklab, var(--color-brand-primary) 6%, transparent)" : "var(--color-background-elevated)",
+        background: active
+          ? "color-mix(in oklab, var(--color-brand-primary) 6%, transparent)"
+          : "var(--color-background-elevated)",
         color: active ? NAVY : TEXT_SECONDARY,
       }}
       aria-pressed={active}
@@ -164,34 +185,61 @@ function MethodTab({
 function BookingSummary() {
   const bi = useBi();
   return (
-    <aside className="rounded-lg border p-5" style={{ borderColor: BORDER, background: "var(--color-background-elevated)" }}>
-      <h2 className="text-[16px] font-bold" style={{ color: TEXT_PRIMARY }}>{bi("Booking Summary", "ملخص الحجز")}</h2>
+    <aside
+      className="rounded-lg border p-5"
+      style={{ borderColor: BORDER, background: "var(--color-background-elevated)" }}
+    >
+      <h2 className="text-[16px] font-bold" style={{ color: TEXT_PRIMARY }}>
+        {bi("Booking Summary", "ملخص الحجز")}
+      </h2>
       <div className="mt-4 flex items-center justify-between">
-        <span className="text-[20px] font-bold" style={{ color: TEXT_PRIMARY }} dir="ltr">09:45</span>
+        <span className="text-[20px] font-bold" style={{ color: TEXT_PRIMARY }} dir="ltr">
+          09:45
+        </span>
         <ArrowRight className="h-4 w-4 rtl-flip" style={{ color: TEXT_TERTIARY }} />
-        <span className="text-[20px] font-bold" style={{ color: TEXT_PRIMARY }} dir="ltr">12:30</span>
+        <span className="text-[20px] font-bold" style={{ color: TEXT_PRIMARY }} dir="ltr">
+          12:30
+        </span>
       </div>
-      <div className="mt-1 text-[12px]" style={{ color: TEXT_TERTIARY }}>{bi("Cairo Central → Alexandria Misr", "القاهرة الرئيسية ← الإسكندرية مصر")}</div>
-      <div className="text-[12px]" style={{ color: TEXT_TERTIARY }}>{bi("Direct • 2h 45m", "مباشر • ٢س ٤٥د")}</div>
+      <div className="mt-1 text-[12px]" style={{ color: TEXT_TERTIARY }}>
+        {bi("Cairo Central → Alexandria Misr", "القاهرة الرئيسية ← الإسكندرية مصر")}
+      </div>
+      <div className="text-[12px]" style={{ color: TEXT_TERTIARY }}>
+        {bi("Direct • 2h 45m", "مباشر • ٢س ٤٥د")}
+      </div>
 
       <div className="my-4 h-px w-full" style={{ background: BORDER }} />
-      <div className="text-[13px]" style={{ color: TEXT_PRIMARY }}>{bi("Tuesday 15 October 2025", "الثلاثاء ١٥ أكتوبر ٢٠٢٥")}</div>
-      <div className="text-[13px]" style={{ color: TEXT_SECONDARY }}>{bi("1 Adult • Business • Seat 4B", "١ بالغ • درجة الأعمال • مقعد ٤ب")}</div>
-      <div className="text-[13px]" style={{ color: TEXT_SECONDARY }}>{bi("Ahmed Mansour", "أحمد منصور")}</div>
+      <div className="text-[13px]" style={{ color: TEXT_PRIMARY }}>
+        {bi("Tuesday 15 October 2025", "الثلاثاء ١٥ أكتوبر ٢٠٢٥")}
+      </div>
+      <div className="text-[13px]" style={{ color: TEXT_SECONDARY }}>
+        {bi("1 Adult • Business • Seat 4B", "١ بالغ • درجة الأعمال • مقعد ٤ب")}
+      </div>
+      <div className="text-[13px]" style={{ color: TEXT_SECONDARY }}>
+        {bi("Ahmed Mansour", "أحمد منصور")}
+      </div>
 
       <div className="my-4 h-px w-full" style={{ background: BORDER }} />
       <div className="flex items-center justify-between text-[13px]">
         <span style={{ color: TEXT_SECONDARY }}>{bi("1× Business", "١× درجة الأعمال")}</span>
-        <span className="font-semibold" style={{ color: TEXT_PRIMARY }}>{bi("385 EGP", "٣٨٥ ج.م")}</span>
+        <span className="font-semibold" style={{ color: TEXT_PRIMARY }}>
+          {bi("385 EGP", "٣٨٥ ج.م")}
+        </span>
       </div>
       <div className="mt-1.5 flex items-center justify-between text-[13px]">
         <span style={{ color: TEXT_SECONDARY }}>{bi("Booking fee", "رسوم الحجز")}</span>
-        <span className="font-semibold" style={{ color: TEXT_PRIMARY }}>{bi("10 EGP", "١٠ ج.م")}</span>
+        <span className="font-semibold" style={{ color: TEXT_PRIMARY }}>
+          {bi("10 EGP", "١٠ ج.م")}
+        </span>
       </div>
       <div className="my-4 h-px w-full" style={{ background: BORDER }} />
       <div className="flex items-center justify-between">
-        <span className="text-[15px] font-bold" style={{ color: TEXT_PRIMARY }}>{bi("Total", "الإجمالي")}</span>
-        <span className="text-[22px] font-bold" style={{ color: TEXT_PRICE }}>{bi("395 EGP", "٣٩٥ ج.م")}</span>
+        <span className="text-[15px] font-bold" style={{ color: TEXT_PRIMARY }}>
+          {bi("Total", "الإجمالي")}
+        </span>
+        <span className="text-[22px] font-bold" style={{ color: TEXT_PRICE }}>
+          {bi("395 EGP", "٣٩٥ ج.م")}
+        </span>
       </div>
 
       <div
@@ -208,7 +256,9 @@ function BookingSummary() {
       >
         <Clock className="h-4 w-4 mt-0.5" style={{ color: "var(--color-status-error-vivid)" }} />
         <span>
-          {bi("Your seats are held for ", "مقاعدك محجوزة لمدة ")}<strong dir="ltr">12:03</strong>{bi(". Complete payment to confirm.", ". أكمل الدفع للتأكيد.")}
+          {bi("Your seats are held for ", "مقاعدك محجوزة لمدة ")}
+          <strong dir="ltr">12:03</strong>
+          {bi(". Complete payment to confirm.", ". أكمل الدفع للتأكيد.")}
         </span>
       </div>
     </aside>
@@ -237,7 +287,9 @@ function PaymentPage() {
         style={{ gridTemplateColumns: "1fr 340px" }}
       >
         <section>
-          <h1 className="text-[32px] font-bold" style={{ color: TEXT_PRIMARY }}>{bi("Payment", "الدفع")}</h1>
+          <h1 className="text-[32px] font-bold" style={{ color: TEXT_PRIMARY }}>
+            {bi("Payment", "الدفع")}
+          </h1>
           <p className="mt-3 text-[14px]" style={{ color: TEXT_SECONDARY }}>
             {bi(
               "Choose how you'd like to pay. All transactions are processed over a secure SSL connection.",
@@ -246,13 +298,34 @@ function PaymentPage() {
           </p>
 
           <div className="mt-6 flex gap-2">
-            <MethodTab id="card" label={bi("Credit / Debit Card", "بطاقة ائتمان / خصم")} icon={CreditCard} active={method === "card"} onClick={() => setMethod("card")} />
-            <MethodTab id="wallet" label={bi("Mobile Wallet", "محفظة الهاتف")} icon={Wallet} active={method === "wallet"} onClick={() => setMethod("wallet")} />
-            <MethodTab id="bank" label={bi("Bank Transfer", "تحويل بنكي")} icon={Building2} active={method === "bank"} onClick={() => setMethod("bank")} />
+            <MethodTab
+              id="card"
+              label={bi("Credit / Debit Card", "بطاقة ائتمان / خصم")}
+              icon={CreditCard}
+              active={method === "card"}
+              onClick={() => setMethod("card")}
+            />
+            <MethodTab
+              id="wallet"
+              label={bi("Mobile Wallet", "محفظة الهاتف")}
+              icon={Wallet}
+              active={method === "wallet"}
+              onClick={() => setMethod("wallet")}
+            />
+            <MethodTab
+              id="bank"
+              label={bi("Bank Transfer", "تحويل بنكي")}
+              icon={Building2}
+              active={method === "bank"}
+              onClick={() => setMethod("bank")}
+            />
           </div>
 
           {method === "card" && (
-            <div className="mt-6 rounded-lg border p-6" style={{ borderColor: BORDER, background: "var(--color-background-elevated)" }}>
+            <div
+              className="mt-6 rounded-lg border p-6"
+              style={{ borderColor: BORDER, background: "var(--color-background-elevated)" }}
+            >
               <div className="grid gap-5">
                 <div>
                   <Label>{bi("Cardholder name", "اسم حامل البطاقة")}</Label>
@@ -272,8 +345,14 @@ function PaymentPage() {
                     <TextField id="cvv" placeholder="123" />
                   </div>
                 </div>
-                <label className="flex items-center gap-2 text-[13px]" style={{ color: TEXT_SECONDARY }}>
-                  <input type="checkbox" className="h-4 w-4 accent-[color:var(--color-brand-primary)]" />
+                <label
+                  className="flex items-center gap-2 text-[13px]"
+                  style={{ color: TEXT_SECONDARY }}
+                >
+                  <input
+                    type="checkbox"
+                    className="h-4 w-4 accent-[color:var(--color-brand-primary)]"
+                  />
                   {bi("Save this card for future bookings", "حفظ هذه البطاقة للحجوزات المستقبلية")}
                 </label>
               </div>
@@ -281,7 +360,10 @@ function PaymentPage() {
           )}
 
           {method === "wallet" && (
-            <div className="mt-6 rounded-lg border p-6" style={{ borderColor: BORDER, background: "var(--color-background-elevated)" }}>
+            <div
+              className="mt-6 rounded-lg border p-6"
+              style={{ borderColor: BORDER, background: "var(--color-background-elevated)" }}
+            >
               <Label>{bi("Mobile wallet number", "رقم محفظة الهاتف")}</Label>
               <TextField id="wallet" placeholder="+20 100 123 4567" />
               <p className="mt-3 text-[12px]" style={{ color: TEXT_TERTIARY }}>
@@ -294,9 +376,23 @@ function PaymentPage() {
           )}
 
           {method === "bank" && (
-            <div className="mt-6 rounded-lg border p-6 text-[13px]" style={{ borderColor: BORDER, background: "var(--color-background-elevated)", color: TEXT_SECONDARY }}>
-              <p style={{ color: TEXT_PRIMARY }} className="font-semibold">{bi("Transfer to:", "التحويل إلى:")}</p>
-              <p className="mt-2">{bi("National Bank of Egypt — ENR Bookings", "البنك الأهلي المصري — حجوزات سكك حديد مصر")}</p>
+            <div
+              className="mt-6 rounded-lg border p-6 text-[13px]"
+              style={{
+                borderColor: BORDER,
+                background: "var(--color-background-elevated)",
+                color: TEXT_SECONDARY,
+              }}
+            >
+              <p style={{ color: TEXT_PRIMARY }} className="font-semibold">
+                {bi("Transfer to:", "التحويل إلى:")}
+              </p>
+              <p className="mt-2">
+                {bi(
+                  "National Bank of Egypt — ENR Bookings",
+                  "البنك الأهلي المصري — حجوزات سكك حديد مصر",
+                )}
+              </p>
               <p dir="ltr">IBAN: EG38 0019 0005 0000 0001 2345 6789</p>
               <p className="mt-3">
                 {bi("Use booking reference ", "استخدم رقم الحجز ")}
@@ -340,7 +436,8 @@ function PaymentPage() {
               className="inline-flex items-center gap-1.5 text-[13px]"
               style={{ color: TEXT_SECONDARY }}
             >
-              <ArrowLeft className="h-3.5 w-3.5 rtl-flip" /> {bi("Back to passenger details", "العودة إلى بيانات الراكب")}
+              <ArrowLeft className="h-3.5 w-3.5 rtl-flip" />{" "}
+              {bi("Back to passenger details", "العودة إلى بيانات الراكب")}
             </LocaleLink>
           </div>
         </section>

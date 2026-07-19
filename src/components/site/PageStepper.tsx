@@ -60,7 +60,9 @@ export function PageStepper({ steps, statusLabel }: { steps: Step[]; statusLabel
               </div>
               <div
                 className={`mt-2 text-[13px] font-semibold ${
-                  isCurrent ? "text-[color:var(--color-text-cta)]" : "text-[color:var(--color-text-primary)]"
+                  isCurrent
+                    ? "text-[color:var(--color-text-cta)]"
+                    : "text-[color:var(--color-text-primary)]"
                 }`}
               >
                 {s.label}

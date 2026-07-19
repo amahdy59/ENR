@@ -12,8 +12,13 @@ export const Route = createFileRoute("/{-$locale}/_authenticated/account/journey
     const isAr = params.locale === "ar";
     return {
       meta: [
-        { title: isAr ? "الرحلات المحفوظة — الهيئة القومية لسكك حديد مصر" : "Saved journeys — ENR" },
-        { name: "description", content: isAr ? "المسارات التي تبحث عنها كثيراً." : "Your frequently searched routes." },
+        {
+          title: isAr ? "الرحلات المحفوظة — الهيئة القومية لسكك حديد مصر" : "Saved journeys — ENR",
+        },
+        {
+          name: "description",
+          content: isAr ? "المسارات التي تبحث عنها كثيراً." : "Your frequently searched routes.",
+        },
         { name: "robots", content: "noindex" },
       ],
     };
@@ -47,21 +52,30 @@ function JourneysPage() {
       />
       <ContentSection>
         {loading ? (
-          <p className="text-sm text-[color:var(--color-text-tertiary)]">{bi("Loading…", "جارٍ التحميل…")}</p>
+          <p className="text-sm text-[color:var(--color-text-tertiary)]">
+            {bi("Loading…", "جارٍ التحميل…")}
+          </p>
         ) : rows.length === 0 ? (
           <div className="grid place-items-center rounded-2xl border border-dashed border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] p-12 text-center">
-            <p className="text-sm text-[color:var(--color-text-secondary)]">{bi("No saved journeys yet.", "لا توجد رحلات محفوظة حتى الآن.")}</p>
+            <p className="text-sm text-[color:var(--color-text-secondary)]">
+              {bi("No saved journeys yet.", "لا توجد رحلات محفوظة حتى الآن.")}
+            </p>
           </div>
         ) : (
           <ul className="space-y-3">
             {rows.map((j) => (
-              <li key={j.id} className="rounded-2xl border border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] p-5">
+              <li
+                key={j.id}
+                className="rounded-2xl border border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] p-5"
+              >
                 <p className="font-bold text-[color:var(--color-text-brand)]">
                   {j.from_station} → {j.to_station}
                 </p>
                 <p className="text-xs text-[color:var(--color-text-tertiary)]">
                   {bi("Last searched", "آخر بحث")}{" "}
-                  {new Date(j.last_searched).toLocaleDateString(locale === "ar" ? "ar-EG" : "en-GB")}
+                  {new Date(j.last_searched).toLocaleDateString(
+                    locale === "ar" ? "ar-EG" : "en-GB",
+                  )}
                 </p>
               </li>
             ))}

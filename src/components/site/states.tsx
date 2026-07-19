@@ -43,7 +43,9 @@ export function EmptyState({ icon: Icon = Inbox, title, description, action }: S
       <Icon className="mb-3 size-8 text-[color:var(--color-text-tertiary)]" aria-hidden="true" />
       <h3 className="text-base font-bold text-[color:var(--color-text-brand)]">{title}</h3>
       {description && (
-        <p className="mt-1 max-w-md text-sm text-[color:var(--color-text-secondary)]">{description}</p>
+        <p className="mt-1 max-w-md text-sm text-[color:var(--color-text-secondary)]">
+          {description}
+        </p>
       )}
       {action && <div className="mt-4">{action}</div>}
     </div>
@@ -56,10 +58,15 @@ export function ErrorState({ icon: Icon = AlertCircle, title, description, actio
       role="alert"
       className="grid place-items-center rounded-2xl border border-[color:var(--color-status-error)] bg-[color:var(--color-status-error-bg)] p-12 text-center"
     >
-      <Icon className="mb-3 size-8 text-[color:var(--color-status-error-vivid)]" aria-hidden="true" />
+      <Icon
+        className="mb-3 size-8 text-[color:var(--color-status-error-vivid)]"
+        aria-hidden="true"
+      />
       <h3 className="text-base font-bold text-[color:var(--color-text-primary)]">{title}</h3>
       {description && (
-        <p className="mt-1 max-w-md text-sm text-[color:var(--color-text-secondary)]">{description}</p>
+        <p className="mt-1 max-w-md text-sm text-[color:var(--color-text-secondary)]">
+          {description}
+        </p>
       )}
       {action && <div className="mt-4">{action}</div>}
     </div>

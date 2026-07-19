@@ -20,15 +20,23 @@ export const Route = createFileRoute("/{-$locale}/confirmation")({
     const isAr = params.locale === "ar";
     return {
       meta: [
-        { title: isAr ? "تم تأكيد الحجز — الهيئة القومية لسكك حديد مصر" : "Booking Confirmed — ENR" },
+        {
+          title: isAr ? "تم تأكيد الحجز — الهيئة القومية لسكك حديد مصر" : "Booking Confirmed — ENR",
+        },
         {
           name: "description",
           content: isAr
             ? "تم تأكيد حجزك في سكك حديد مصر. اعرض تذكرتك الإلكترونية أو أضفها إلى التقويم أو قم بتنزيلها."
             : "Your Egyptian Railway booking is confirmed. View your e-ticket, add it to your calendar, or download it.",
         },
-        { property: "og:title", content: isAr ? "تم تأكيد الحجز — سكك حديد مصر" : "Booking Confirmed — ENR" },
-        { property: "og:description", content: isAr ? "تم تأكيد حجزك." : "Your ENR booking is confirmed." },
+        {
+          property: "og:title",
+          content: isAr ? "تم تأكيد الحجز — سكك حديد مصر" : "Booking Confirmed — ENR",
+        },
+        {
+          property: "og:description",
+          content: isAr ? "تم تأكيد حجزك." : "Your ENR booking is confirmed.",
+        },
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
       ],
@@ -65,7 +73,11 @@ function SiteHeader() {
   return (
     <header style={{ background: NAVY, color: TEXT_INVERSE }}>
       <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
-        <LocaleLink to="/" className="text-[20px] font-bold tracking-wide" style={{ color: TEXT_INVERSE }}>
+        <LocaleLink
+          to="/"
+          className="text-[20px] font-bold tracking-wide"
+          style={{ color: TEXT_INVERSE }}
+        >
           {bi("ENR", "س.ح.م")}
         </LocaleLink>
         <nav className="hidden md:flex items-center gap-8 text-[14px]">
@@ -83,7 +95,12 @@ function SiteHeader() {
             </LocaleLink>
           ))}
         </nav>
-        <LocaleLink to="/" targetLocale={otherLocale} className="text-[13px]" style={{ color: TEXT_INVERSE }}>
+        <LocaleLink
+          to="/"
+          targetLocale={otherLocale}
+          className="text-[13px]"
+          style={{ color: TEXT_INVERSE }}
+        >
           {bi("العربية", "English")}
         </LocaleLink>
       </div>
@@ -106,14 +123,25 @@ function ConfirmationPage() {
           >
             <Check className="h-7 w-7" />
           </div>
-          <h1 className="mt-4 text-[30px] font-bold">{bi("Booking confirmed", "تم تأكيد الحجز")}</h1>
+          <h1 className="mt-4 text-[30px] font-bold">
+            {bi("Booking confirmed", "تم تأكيد الحجز")}
+          </h1>
           <p className="mt-2 text-[14px]" style={{ color: TEXT_NAV_INACTIVE }}>
-            {bi("Thank you, Ahmed. Your e-ticket has been sent to ", "شكراً لك يا أحمد. تم إرسال تذكرتك الإلكترونية إلى ")}
-            <span style={{ color: TEXT_INVERSE }} dir="ltr">ahmed.m@example.com</span>.
+            {bi(
+              "Thank you, Ahmed. Your e-ticket has been sent to ",
+              "شكراً لك يا أحمد. تم إرسال تذكرتك الإلكترونية إلى ",
+            )}
+            <span style={{ color: TEXT_INVERSE }} dir="ltr">
+              ahmed.m@example.com
+            </span>
+            .
           </p>
           <div
             className="mt-5 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[12px] font-semibold"
-            style={{ borderColor: "color-mix(in oklab, #ffffff 20%, transparent)", color: TEXT_INVERSE }}
+            style={{
+              borderColor: "color-mix(in oklab, #ffffff 20%, transparent)",
+              color: TEXT_INVERSE,
+            }}
           >
             <Ticket className="h-3.5 w-3.5" style={{ color: GOLD }} />
             {bi("Booking reference", "رقم الحجز")} <span dir="ltr">{reference}</span>
@@ -122,7 +150,10 @@ function ConfirmationPage() {
       </div>
 
       <main className="mx-auto max-w-4xl px-6 py-10">
-        <div className="print-ticket rounded-xl border overflow-hidden" style={{ borderColor: BORDER, background: "var(--color-background-elevated)" }}>
+        <div
+          className="print-ticket rounded-xl border overflow-hidden"
+          style={{ borderColor: BORDER, background: "var(--color-background-elevated)" }}
+        >
           <div
             className="px-6 py-4 flex items-center justify-between"
             style={{ background: MUTED, borderBottom: `1px solid ${BORDER}` }}
@@ -137,18 +168,29 @@ function ConfirmationPage() {
 
           <div className="grid gap-6 p-6 md:grid-cols-[1fr_180px]">
             <div>
-              <div className="text-[12px] font-semibold uppercase tracking-wide" style={{ color: TEXT_TERTIARY }}>
+              <div
+                className="text-[12px] font-semibold uppercase tracking-wide"
+                style={{ color: TEXT_TERTIARY }}
+              >
                 {bi("Cairo Central → Alexandria Misr", "القاهرة الرئيسية ← الإسكندرية مصر")}
               </div>
               <div className="mt-3 flex items-baseline gap-4">
                 <div>
-                  <div className="text-[28px] font-bold" style={{ color: TEXT_PRIMARY }} dir="ltr">09:45</div>
-                  <div className="text-[12px]" style={{ color: TEXT_TERTIARY }}>{bi("Cairo Central", "القاهرة الرئيسية")}</div>
+                  <div className="text-[28px] font-bold" style={{ color: TEXT_PRIMARY }} dir="ltr">
+                    09:45
+                  </div>
+                  <div className="text-[12px]" style={{ color: TEXT_TERTIARY }}>
+                    {bi("Cairo Central", "القاهرة الرئيسية")}
+                  </div>
                 </div>
                 <div className="flex-1 border-t border-dashed" style={{ borderColor: BORDER }} />
                 <div className="text-end">
-                  <div className="text-[28px] font-bold" style={{ color: TEXT_PRIMARY }} dir="ltr">12:30</div>
-                  <div className="text-[12px]" style={{ color: TEXT_TERTIARY }}>{bi("Alexandria Misr", "الإسكندرية مصر")}</div>
+                  <div className="text-[28px] font-bold" style={{ color: TEXT_PRIMARY }} dir="ltr">
+                    12:30
+                  </div>
+                  <div className="text-[12px]" style={{ color: TEXT_TERTIARY }}>
+                    {bi("Alexandria Misr", "الإسكندرية مصر")}
+                  </div>
                 </div>
               </div>
               <div className="mt-2 text-[12px]" style={{ color: TEXT_TERTIARY }}>
@@ -157,28 +199,50 @@ function ConfirmationPage() {
 
               <div className="mt-6 grid grid-cols-2 gap-4 text-[13px] md:grid-cols-4">
                 <div>
-                  <div style={{ color: TEXT_TERTIARY }} className="text-[11px]">{bi("Date", "التاريخ")}</div>
-                  <div className="font-semibold" style={{ color: TEXT_PRIMARY }}>{bi("15 Oct 2025", "١٥ أكتوبر ٢٠٢٥")}</div>
+                  <div style={{ color: TEXT_TERTIARY }} className="text-[11px]">
+                    {bi("Date", "التاريخ")}
+                  </div>
+                  <div className="font-semibold" style={{ color: TEXT_PRIMARY }}>
+                    {bi("15 Oct 2025", "١٥ أكتوبر ٢٠٢٥")}
+                  </div>
                 </div>
                 <div>
-                  <div style={{ color: TEXT_TERTIARY }} className="text-[11px]">{bi("Class", "الدرجة")}</div>
-                  <div className="font-semibold" style={{ color: TEXT_PRIMARY }}>{bi("Business", "الأعمال")}</div>
+                  <div style={{ color: TEXT_TERTIARY }} className="text-[11px]">
+                    {bi("Class", "الدرجة")}
+                  </div>
+                  <div className="font-semibold" style={{ color: TEXT_PRIMARY }}>
+                    {bi("Business", "الأعمال")}
+                  </div>
                 </div>
                 <div>
-                  <div style={{ color: TEXT_TERTIARY }} className="text-[11px]">{bi("Seat", "المقعد")}</div>
-                  <div className="font-semibold" style={{ color: TEXT_PRIMARY }}>{bi("Coach 3 • 4B", "عربة ٣ • ٤ب")}</div>
+                  <div style={{ color: TEXT_TERTIARY }} className="text-[11px]">
+                    {bi("Seat", "المقعد")}
+                  </div>
+                  <div className="font-semibold" style={{ color: TEXT_PRIMARY }}>
+                    {bi("Coach 3 • 4B", "عربة ٣ • ٤ب")}
+                  </div>
                 </div>
                 <div>
-                  <div style={{ color: TEXT_TERTIARY }} className="text-[11px]">{bi("Passenger", "الراكب")}</div>
-                  <div className="font-semibold" style={{ color: TEXT_PRIMARY }}>{bi("Ahmed Mansour", "أحمد منصور")}</div>
+                  <div style={{ color: TEXT_TERTIARY }} className="text-[11px]">
+                    {bi("Passenger", "الراكب")}
+                  </div>
+                  <div className="font-semibold" style={{ color: TEXT_PRIMARY }}>
+                    {bi("Ahmed Mansour", "أحمد منصور")}
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-col items-center justify-center rounded-lg border p-4" style={{ borderColor: BORDER, background: MUTED }}>
+            <div
+              className="flex flex-col items-center justify-center rounded-lg border p-4"
+              style={{ borderColor: BORDER, background: MUTED }}
+            >
               <div
                 className="flex h-32 w-32 items-center justify-center rounded-md"
-                style={{ background: "var(--color-background-elevated)", border: `1px solid ${BORDER}` }}
+                style={{
+                  background: "var(--color-background-elevated)",
+                  border: `1px solid ${BORDER}`,
+                }}
               >
                 <QrCode className="h-24 w-24" style={{ color: "var(--color-text-brand)" }} />
               </div>
@@ -192,19 +256,26 @@ function ConfirmationPage() {
             className="flex items-center justify-between px-6 py-4"
             style={{ background: MUTED, borderTop: `1px solid ${BORDER}` }}
           >
-            <div className="text-[12px]" style={{ color: TEXT_TERTIARY }}>{bi("Total paid", "الإجمالي المدفوع")}</div>
-            <div className="text-[18px] font-bold" style={{ color: TEXT_PRICE }}>{bi("395 EGP", "٣٩٥ ج.م")}</div>
+            <div className="text-[12px]" style={{ color: TEXT_TERTIARY }}>
+              {bi("Total paid", "الإجمالي المدفوع")}
+            </div>
+            <div className="text-[18px] font-bold" style={{ color: TEXT_PRICE }}>
+              {bi("395 EGP", "٣٩٥ ج.م")}
+            </div>
           </div>
         </div>
 
         <div className="no-print mt-6 grid gap-3 sm:grid-cols-4">
           {[
-            { icon: Download, label: bi("Print / Save PDF", "طباعة / حفظ PDF"), action: () => window.print() },
+            {
+              icon: Download,
+              label: bi("Print / Save PDF", "طباعة / حفظ PDF"),
+              action: () => window.print(),
+            },
             { icon: Download, label: bi("Download PDF", "تنزيل PDF") },
             { icon: Mail, label: bi("Resend email", "إعادة إرسال البريد") },
             { icon: Calendar, label: bi("Add to calendar", "إضافة إلى التقويم") },
           ].map((a) => (
-
             <button
               key={a.label}
               type="button"
@@ -213,11 +284,17 @@ function ConfirmationPage() {
                   (a as { action: () => void }).action();
                   return;
                 }
-                import("sonner").then(({ toast }) => toast.success(`${a.label} — ${bi("done", "تم")}`));
+                import("sonner").then(({ toast }) =>
+                  toast.success(`${a.label} — ${bi("done", "تم")}`),
+                );
               }}
 
               className="flex items-center justify-center gap-2 rounded-md border px-4 py-3 text-[13px] font-semibold transition-colors hover:bg-[color:var(--color-background-muted)]"
-              style={{ borderColor: BORDER, background: "var(--color-background-elevated)", color: TEXT_PRIMARY }}
+              style={{
+                borderColor: BORDER,
+                background: "var(--color-background-elevated)",
+                color: TEXT_PRIMARY,
+              }}
             >
               <a.icon className="h-4 w-4" style={{ color: "var(--color-text-brand)" }} />
               {a.label}
@@ -225,7 +302,10 @@ function ConfirmationPage() {
           ))}
         </div>
 
-        <div className="mt-8 rounded-lg border p-6" style={{ borderColor: BORDER, background: "var(--color-background-elevated)" }}>
+        <div
+          className="mt-8 rounded-lg border p-6"
+          style={{ borderColor: BORDER, background: "var(--color-background-elevated)" }}
+        >
           <h2 className="text-[16px] font-bold" style={{ color: TEXT_PRIMARY }}>
             {bi("What happens next", "الخطوات التالية")}
           </h2>
@@ -271,7 +351,8 @@ function ConfirmationPage() {
             className="inline-flex items-center gap-1.5 text-[13px]"
             style={{ color: TEXT_SECONDARY }}
           >
-            {bi("Book another journey", "احجز رحلة أخرى")} <ArrowRight className="h-3.5 w-3.5 rtl-flip" />
+            {bi("Book another journey", "احجز رحلة أخرى")}{" "}
+            <ArrowRight className="h-3.5 w-3.5 rtl-flip" />
           </LocaleLink>
         </div>
       </main>

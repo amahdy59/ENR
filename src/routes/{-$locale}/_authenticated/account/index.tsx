@@ -6,6 +6,7 @@ import { useBi } from "@/i18n/bi";
 import { useLocale } from "@/i18n/locale-context";
 import { localizedPath } from "@/i18n/LocaleLink";
 import { Ticket, Users, MapPin, CreditCard, Bell, LogOut } from "lucide-react";
+import { ConfirmDialog } from "@/components/site/ConfirmDialog";
 
 export const Route = createFileRoute("/{-$locale}/_authenticated/account/")({
   head: ({ params }) => {
@@ -13,7 +14,12 @@ export const Route = createFileRoute("/{-$locale}/_authenticated/account/")({
     return {
       meta: [
         { title: isAr ? "حسابي — الهيئة القومية لسكك حديد مصر" : "My account — ENR" },
-        { name: "description", content: isAr ? "إدارة حسابك وحجوزاتك والمسافرين المحفوظين." : "Manage your ENR account, bookings and saved travellers." },
+        {
+          name: "description",
+          content: isAr
+            ? "إدارة حسابك وحجوزاتك والمسافرين المحفوظين."
+            : "Manage your ENR account, bookings and saved travellers.",
+        },
         { name: "robots", content: "noindex" },
       ],
     };
@@ -33,7 +39,11 @@ function AccountHome() {
 
   const links = [
     { to: "/account/bookings", icon: Ticket, label: bi("My bookings", "حجوزاتي") },
-    { to: "/account/travellers", icon: Users, label: bi("Saved travellers", "المسافرون المحفوظون") },
+    {
+      to: "/account/travellers",
+      icon: Users,
+      label: bi("Saved travellers", "المسافرون المحفوظون"),
+    },
     { to: "/account/journeys", icon: MapPin, label: bi("Saved journeys", "الرحلات المحفوظة") },
     { to: "/account/payment", icon: CreditCard, label: bi("Payment methods", "طرق الدفع") },
     { to: "/account/notifications", icon: Bell, label: bi("Notifications", "الإشعارات") },
@@ -64,17 +74,29 @@ function AccountHome() {
                 <div className="grid size-11 place-items-center rounded-xl bg-[color:var(--color-brand-primary-tint)] text-[color:var(--color-text-brand)]">
                   <Icon className="size-5" />
                 </div>
-                <span className="font-semibold text-[color:var(--color-text-brand)]">{l.label}</span>
+                <span className="font-semibold text-[color:var(--color-text-brand)]">
+                  {l.label}
+                </span>
               </Link>
             );
           })}
         </div>
-        <button
-          onClick={signOut}
-          className="mt-8 inline-flex items-center gap-2 rounded-lg border border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] px-4 py-2 text-sm font-semibold text-[color:var(--color-text-primary)] hover:bg-[color:var(--color-background-surface)]"
-        >
-          <LogOut className="size-4" /> {bi("Sign out", "تسجيل الخروج")}
-        </button>
+        <ConfirmDialog
+          trigger={
+            <button className="mt-8 inline-flex items-center gap-2 rounded-lg border border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] px-4 py-2 text-sm font-semibold text-[color:var(--color-text-primary)] hover:bg-[color:var(--color-background-surface)]">
+              <LogOut className="size-4" /> {bi("Sign out", "تسجيل الخروج")}
+            </button>
+          }
+          title={bi("Sign out", "تسجيل الخروج")}
+          description={bi(
+            "Are you sure you want to sign out of your account?",
+            "هل أنت متأكد أنك تريد تسجيل الخروج من حسابك؟",
+          )}
+          confirmLabel={bi("Sign out", "تسجيل الخروج")}
+          cancelLabel={bi("Cancel", "إلغاء")}
+          onConfirm={signOut}
+          destructive
+        />
       </ContentSection>
     </SiteLayout>
   );

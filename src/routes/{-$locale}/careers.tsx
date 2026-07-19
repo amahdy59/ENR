@@ -19,7 +19,10 @@ function CareersPage() {
     <StubPage
       eyebrow={bi("Company", "عن الهيئة")}
       title={bi("Careers at ENR", "الوظائف في الهيئة")}
-      subtitle={bi("Help move Egypt forward — join our team.", "ساهم في تحريك مصر إلى الأمام — انضم إلى فريقنا.")}
+      subtitle={bi(
+        "Help move Egypt forward — join our team.",
+        "ساهم في تحريك مصر إلى الأمام — انضم إلى فريقنا.",
+      )}
     >
       <p className="text-sm text-[color:var(--color-text-secondary)]">
         {bi(

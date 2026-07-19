@@ -34,30 +34,46 @@ function TimetableIndex() {
   const [openDate, setOpenDate] = useState(false);
   const [errors, setErrors] = useState<{ from?: string; to?: string }>({});
 
-  const fromId = useMemo(() => STATIONS.find((s) => s.name.en === from || s.name.ar === from)?.id, [from]);
+  const fromId = useMemo(
+    () => STATIONS.find((s) => s.name.en === from || s.name.ar === from)?.id,
+    [from],
+  );
   const toId = useMemo(() => STATIONS.find((s) => s.name.en === to || s.name.ar === to)?.id, [to]);
   const selectedDate = date ? parseISO(date) : undefined;
   const minDate = parseISO(today);
   const dateLabel = selectedDate
-    ? new Intl.DateTimeFormat(locale, { weekday: "short", day: "numeric", month: "short", year: "numeric" }).format(selectedDate)
+    ? new Intl.DateTimeFormat(locale, {
+        weekday: "short",
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      }).format(selectedDate)
     : bi("Select date", "اختر التاريخ");
 
   return (
     <StubPage
       eyebrow={bi("Plan", "خطط")}
       title={bi("Timetables", "مواعيد القطارات")}
-      subtitle={bi("Search timetables by station, line or date.", "ابحث في المواعيد حسب المحطة أو الخط أو التاريخ.")}
+      subtitle={bi(
+        "Search timetables by station, line or date.",
+        "ابحث في المواعيد حسب المحطة أو الخط أو التاريخ.",
+      )}
       breadcrumbs={[{ label: bi("Timetables", "المواعيد") }]}
     >
       <form
         onSubmit={(e) => {
           e.preventDefault();
           const nextErrors: { from?: string; to?: string } = {};
-          if (!from.trim()) nextErrors.from = bi("Please pick a departure station.", "من فضلك اختر محطة المغادرة.");
-          if (!to.trim()) nextErrors.to = bi("Please pick an arrival station.", "من فضلك اختر محطة الوصول.");
+          if (!from.trim())
+            nextErrors.from = bi("Please pick a departure station.", "من فضلك اختر محطة المغادرة.");
+          if (!to.trim())
+            nextErrors.to = bi("Please pick an arrival station.", "من فضلك اختر محطة الوصول.");
           setErrors(nextErrors);
           if (Object.keys(nextErrors).length) return;
-          navigate({ to: localizedPath("/search", locale) as never, search: { from, to, date } as never });
+          navigate({
+            to: localizedPath("/search", locale) as never,
+            search: { from, to, date } as never,
+          });
         }}
         noValidate
         className="grid grid-cols-1 gap-4 rounded-2xl border border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] p-5 md:grid-cols-2"
@@ -66,7 +82,10 @@ function TimetableIndex() {
           name="from"
           label={bi("From", "من")}
           value={from}
-          onChange={(v) => { setFrom(v); if (errors.from) setErrors((p) => ({ ...p, from: undefined })); }}
+          onChange={(v) => {
+            setFrom(v);
+            if (errors.from) setErrors((p) => ({ ...p, from: undefined }));
+          }}
           placeholder={bi("Cairo, Alexandria…", "القاهرة، الإسكندرية…")}
           helper={bi("Type at least two letters to search.", "اكتب حرفين على الأقل للبحث.")}
           required
@@ -77,7 +96,10 @@ function TimetableIndex() {
           name="to"
           label={bi("To", "إلى")}
           value={to}
-          onChange={(v) => { setTo(v); if (errors.to) setErrors((p) => ({ ...p, to: undefined })); }}
+          onChange={(v) => {
+            setTo(v);
+            if (errors.to) setErrors((p) => ({ ...p, to: undefined }));
+          }}
           placeholder={bi("Luxor, Aswan…", "الأقصر، أسوان…")}
           helper={bi("Type at least two letters to search.", "اكتب حرفين على الأقل للبحث.")}
           required
@@ -86,7 +108,10 @@ function TimetableIndex() {
         />
 
         <div className="flex flex-col gap-1.5 md:col-span-2">
-          <label htmlFor="tt-date" className="text-sm font-semibold text-[color:var(--color-text-brand)]">
+          <label
+            htmlFor="tt-date"
+            className="text-sm font-semibold text-[color:var(--color-text-brand)]"
+          >
             {bi("Travel date", "تاريخ السفر")}
           </label>
           <Popover open={openDate} onOpenChange={setOpenDate}>
@@ -98,7 +123,10 @@ function TimetableIndex() {
                 aria-expanded={openDate}
                 className="field-interaction flex h-12 w-full items-center gap-2 rounded-lg border border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] px-3 text-start text-[15px] text-[color:var(--color-text-primary)]"
               >
-                <CalendarIcon className="icon-pop size-[18px] text-[color:var(--color-text-brand)]" aria-hidden="true" />
+                <CalendarIcon
+                  className="icon-pop size-[18px] text-[color:var(--color-text-brand)]"
+                  aria-hidden="true"
+                />
                 <span className="flex-1 truncate">{dateLabel}</span>
               </button>
             </PopoverTrigger>

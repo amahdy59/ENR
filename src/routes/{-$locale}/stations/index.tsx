@@ -33,9 +33,11 @@ function StationsIndex() {
       arr.push(s);
       map.set(s.line, arr);
     }
-    return STATION_LINES
-      .map((line) => ({ id: line.id as LineId, label: line.label, items: map.get(line.id) ?? [] }))
-      .filter((g) => g.items.length > 0);
+    return STATION_LINES.map((line) => ({
+      id: line.id as LineId,
+      label: line.label,
+      items: map.get(line.id) ?? [],
+    })).filter((g) => g.items.length > 0);
   }, [q]);
 
   const total = STATIONS.length;
@@ -52,7 +54,10 @@ function StationsIndex() {
       breadcrumbs={[{ label: bi("Stations", "المحطات") }]}
     >
       <div className="mb-8">
-        <label htmlFor="station-search" className="mb-2 block text-sm font-semibold text-[color:var(--color-text-brand)]">
+        <label
+          htmlFor="station-search"
+          className="mb-2 block text-sm font-semibold text-[color:var(--color-text-brand)]"
+        >
           {bi("Search stations", "ابحث في المحطات")}
         </label>
         <div className="relative">
@@ -64,21 +69,34 @@ function StationsIndex() {
             type="search"
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder={bi("Search by station name, city or code…", "ابحث باسم المحطة أو المدينة أو الكود…")}
+            placeholder={bi(
+              "Search by station name, city or code…",
+              "ابحث باسم المحطة أو المدينة أو الكود…",
+            )}
             aria-describedby="station-search-hint"
             className="field-interaction h-12 w-full rounded-xl border border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] ps-11 pe-4 text-sm text-[color:var(--color-text-primary)] placeholder:text-[color:var(--color-text-placeholder)] shadow-sm"
           />
         </div>
-        <p id="station-search-hint" aria-live="polite" className="mt-2 text-xs text-[color:var(--color-text-secondary)]">
+        <p
+          id="station-search-hint"
+          aria-live="polite"
+          className="mt-2 text-xs text-[color:var(--color-text-secondary)]"
+        >
           {q.trim()
-            ? bi(`${resultCount} of ${total} stations match "${q}".`, `${resultCount} من ${total} محطة تطابق "${q}".`)
+            ? bi(
+                `${resultCount} of ${total} stations match "${q}".`,
+                `${resultCount} من ${total} محطة تطابق "${q}".`,
+              )
             : bi("Grouped by ENR line.", "مجمّعة حسب خط الهيئة.")}
         </p>
       </div>
 
       {grouped.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-[color:var(--color-border-default)] bg-[color:var(--color-background-surface)] p-10 text-center text-sm text-[color:var(--color-text-secondary)]">
-          {bi("No stations matched. Try a nearby city or the line name.", "لا توجد محطات مطابقة. جرّب مدينة قريبة أو اسم الخط.")}
+          {bi(
+            "No stations matched. Try a nearby city or the line name.",
+            "لا توجد محطات مطابقة. جرّب مدينة قريبة أو اسم الخط.",
+          )}
         </div>
       ) : (
         <div className="space-y-8">

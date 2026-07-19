@@ -22,7 +22,9 @@ export function CookieConsent() {
   const persist = (v: Choice) => {
     try {
       localStorage.setItem(STORAGE_KEY, v);
-    } catch { /* ignore */ }
+    } catch {
+      /* ignore */
+    }
     setVisible(false);
   };
 
@@ -37,15 +39,24 @@ export function CookieConsent() {
     >
       <div className="mx-auto flex max-w-[1440px] flex-col gap-4 px-6 py-4 md:flex-row md:items-center md:justify-between md:px-10 lg:px-20">
         <div className="min-w-0">
-          <p id="cookie-consent-title" className="text-sm font-bold text-[color:var(--color-text-brand)]">
+          <p
+            id="cookie-consent-title"
+            className="text-sm font-bold text-[color:var(--color-text-brand)]"
+          >
             {t("cookies.title", { defaultValue: "This site uses cookies" })}
           </p>
-          <p id="cookie-consent-desc" className="mt-1 text-sm text-[color:var(--color-text-secondary)]">
+          <p
+            id="cookie-consent-desc"
+            className="mt-1 text-sm text-[color:var(--color-text-secondary)]"
+          >
             {t("cookies.body", {
               defaultValue:
                 "We use essential cookies to keep the site running and, with your permission, analytics to improve it. ",
             })}
-            <LocaleLink to="/legal/cookies" className="link-underline font-semibold text-[color:var(--color-text-brand)]">
+            <LocaleLink
+              to="/legal/cookies"
+              className="link-underline font-semibold text-[color:var(--color-text-brand)]"
+            >
               {t("cookies.learnMore", { defaultValue: "Learn more" })}
             </LocaleLink>
           </p>

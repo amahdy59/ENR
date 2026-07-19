@@ -17,12 +17,21 @@ function NewsPage() {
   const bi = useBi();
   const news = [
     {
-      title: bi("New high-speed service on Cairo–Alexandria", "خدمة عالية السرعة جديدة على خط القاهرة – الإسكندرية"),
+      title: bi(
+        "New high-speed service on Cairo–Alexandria",
+        "خدمة عالية السرعة جديدة على خط القاهرة – الإسكندرية",
+      ),
       meta: bi("12 Oct 2025", "12 أكتوبر 2025"),
-      body: bi("Modern high-speed infrastructure comes online.", "دخول بنية تحتية حديثة عالية السرعة إلى الخدمة."),
+      body: bi(
+        "Modern high-speed infrastructure comes online.",
+        "دخول بنية تحتية حديثة عالية السرعة إلى الخدمة.",
+      ),
     },
     {
-      title: bi("Station accessibility upgrades complete", "اكتمال تطويرات إمكانية الوصول في المحطات"),
+      title: bi(
+        "Station accessibility upgrades complete",
+        "اكتمال تطويرات إمكانية الوصول في المحطات",
+      ),
       meta: bi("8 Oct 2025", "8 أكتوبر 2025"),
       body: bi(
         "15 major stations upgraded with ramps, audio and tactile paths.",
@@ -42,10 +51,15 @@ function NewsPage() {
     <StubPage
       eyebrow={bi("Press", "الأخبار")}
       title={bi("News", "الأخبار")}
-      subtitle={bi("Latest updates from Egyptian National Railways.", "آخر التحديثات من الهيئة القومية لسكك حديد مصر.")}
+      subtitle={bi(
+        "Latest updates from Egyptian National Railways.",
+        "آخر التحديثات من الهيئة القومية لسكك حديد مصر.",
+      )}
     >
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {news.map((n) => <Card key={n.title} {...n} />)}
+        {news.map((n) => (
+          <Card key={n.title} {...n} />
+        ))}
       </div>
     </StubPage>
   );

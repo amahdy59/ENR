@@ -37,7 +37,10 @@ function AlertsPage() {
     <StubPage
       eyebrow={bi("Alerts", "التنبيهات")}
       title={bi("Service alerts", "تنبيهات الخدمة")}
-      subtitle={bi("Disruptions, delays and planned engineering works.", "الأعطال والتأخيرات والأعمال الهندسية المخطط لها.")}
+      subtitle={bi(
+        "Disruptions, delays and planned engineering works.",
+        "الأعطال والتأخيرات والأعمال الهندسية المخطط لها.",
+      )}
     >
       <div className="grid grid-cols-1 gap-4">
         {alerts.map((a) => (

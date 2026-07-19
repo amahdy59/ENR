@@ -81,10 +81,35 @@
     "from": "From {{price}}",
     "durationSuffix": "Trains every {{freq}}",
     "cards": {
-      "alex": { "title": "Cairo → Alexandria", "duration": "2h 45m", "freq": "30 min", "price": "75 EGP", "tag1": "WiFi", "tag2": "AC" },
-      "luxor": { "title": "Cairo → Luxor", "duration": "9h 30m", "freq": "3 services daily", "price": "180 EGP", "tag1": "Sleeper available" },
-      "aswan": { "title": "Cairo → Aswan", "duration": "12h", "freq": "Overnight service", "price": "210 EGP", "tag1": "Sleeper cabin" },
-      "matrouh": { "title": "Alexandria → Marsa Matrouh", "duration": "3h 20m", "freq": "Summer seasonal", "price": "95 EGP", "tag1": "Scenic coastal route" }
+      "alex": {
+        "title": "Cairo → Alexandria",
+        "duration": "2h 45m",
+        "freq": "30 min",
+        "price": "75 EGP",
+        "tag1": "WiFi",
+        "tag2": "AC"
+      },
+      "luxor": {
+        "title": "Cairo → Luxor",
+        "duration": "9h 30m",
+        "freq": "3 services daily",
+        "price": "180 EGP",
+        "tag1": "Sleeper available"
+      },
+      "aswan": {
+        "title": "Cairo → Aswan",
+        "duration": "12h",
+        "freq": "Overnight service",
+        "price": "210 EGP",
+        "tag1": "Sleeper cabin"
+      },
+      "matrouh": {
+        "title": "Alexandria → Marsa Matrouh",
+        "duration": "3h 20m",
+        "freq": "Summer seasonal",
+        "price": "95 EGP",
+        "tag1": "Scenic coastal route"
+      }
     }
   },
   "news": {
@@ -96,9 +121,21 @@
     "title": "Plan with ENR",
     "subtitle": "Everything you need for a smooth journey",
     "cards": {
-      "timetables": { "title": "Timetables & Maps", "body": "Download the full October 2025 timetable as PDF.", "cta": "Download" },
-      "stations": { "title": "Stations", "body": "Search 350+ ENR stations across Egypt.", "cta": "Find station" },
-      "assist": { "title": "Accessibility & Assistance", "body": "Pre-book support, ramps, wheelchair space and priority seating.", "cta": "Book support" }
+      "timetables": {
+        "title": "Timetables & Maps",
+        "body": "Download the full October 2025 timetable as PDF.",
+        "cta": "Download"
+      },
+      "stations": {
+        "title": "Stations",
+        "body": "Search 350+ ENR stations across Egypt.",
+        "cta": "Find station"
+      },
+      "assist": {
+        "title": "Accessibility & Assistance",
+        "body": "Pre-book support, ramps, wheelchair space and priority seating.",
+        "cta": "Book support"
+      }
     }
   },
   "social": {

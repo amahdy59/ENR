@@ -34,7 +34,6 @@ function log(ok, label, detail = "") {
 async function runAxe(page, context) {
   await page.addScriptTag({ content: axeSource });
   const result = await page.evaluate(async (tags) => {
-    // eslint-disable-next-line no-undef
     return await axe.run(document, {
       runOnly: { type: "tag", values: tags },
       resultTypes: ["violations"],
@@ -70,8 +69,7 @@ async function main() {
   await runAxe(page, "Home (mobile)");
 
   // --- Search results ---
-  const searchUrl =
-    `${BASE}/search?from=CAI&to=ALY&date=2026-08-15&passengers=1&way=one-way`;
+  const searchUrl = `${BASE}/search?from=CAI&to=ALY&date=2026-08-15&passengers=1&way=one-way`;
   await page.goto(searchUrl, { waitUntil: "domcontentloaded" });
   await page.waitForSelector("main");
   // Let async trip results resolve (findTrips is lazy-imported).
@@ -111,7 +109,5 @@ try {
   process.exit(2);
 }
 
-console.log(
-  `\nMobile a11y audit: ${summary.filter((s) => s.ok).length} passed, ${failed} failed`,
-);
+console.log(`\nMobile a11y audit: ${summary.filter((s) => s.ok).length} passed, ${failed} failed`);
 process.exit(failed > 0 ? 1 : 0);

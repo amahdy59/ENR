@@ -9,7 +9,10 @@ export const Route = createFileRoute("/{-$locale}/_authenticated/account/payment
     return {
       meta: [
         { title: isAr ? "طرق الدفع — الهيئة القومية لسكك حديد مصر" : "Payment methods — ENR" },
-        { name: "description", content: isAr ? "أدر بطاقات الدفع المحفوظة." : "Manage your saved payment methods." },
+        {
+          name: "description",
+          content: isAr ? "أدر بطاقات الدفع المحفوظة." : "Manage your saved payment methods.",
+        },
         { name: "robots", content: "noindex" },
       ],
     };
@@ -32,7 +35,9 @@ function PaymentMethodsPage() {
         </button>
         <div className="grid place-items-center rounded-2xl border border-dashed border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] p-12 text-center">
           <CreditCard className="mb-3 size-8 text-[color:var(--color-text-tertiary)]" />
-          <p className="text-sm text-[color:var(--color-text-secondary)]">{bi("No saved cards yet.", "لا توجد بطاقات محفوظة حتى الآن.")}</p>
+          <p className="text-sm text-[color:var(--color-text-secondary)]">
+            {bi("No saved cards yet.", "لا توجد بطاقات محفوظة حتى الآن.")}
+          </p>
         </div>
       </ContentSection>
     </SiteLayout>

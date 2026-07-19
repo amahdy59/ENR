@@ -49,10 +49,15 @@ function AccessibilityPage() {
     <StubPage
       eyebrow={bi("Travel", "السفر")}
       title={bi("Accessibility", "إمكانية الوصول")}
-      subtitle={bi("Travelling with ENR — support for every passenger.", "السفر مع الهيئة القومية لسكك حديد مصر — دعم لكل راكب.")}
+      subtitle={bi(
+        "Travelling with ENR — support for every passenger.",
+        "السفر مع الهيئة القومية لسكك حديد مصر — دعم لكل راكب.",
+      )}
     >
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        {items.map((i) => <Card key={i.title} {...i} />)}
+        {items.map((i) => (
+          <Card key={i.title} {...i} />
+        ))}
       </div>
     </StubPage>
   );

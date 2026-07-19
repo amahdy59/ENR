@@ -10,7 +10,9 @@
    (chevrons, arrows) whose meaning is "forward/back" rather than a fixed
    compass direction. */
 @utility rtl-flip {
-  [dir="rtl"] & { transform: scaleX(-1); }
+  [dir="rtl"] & {
+    transform: scaleX(-1);
+  }
 }
 
 /*
@@ -421,7 +423,12 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
   }
 
@@ -433,7 +440,9 @@
      inner background halo keeps the ring visible
      over both dark-navy and light-neutral surfaces.
      ============================================ */
-  :focus { outline: none; }
+  :focus {
+    outline: none;
+  }
 
   a:focus-visible,
   button:focus-visible,
@@ -494,7 +503,9 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .skip-to-content { transition: none; }
+    .skip-to-content {
+      transition: none;
+    }
   }
 }
 
@@ -503,10 +514,20 @@
    All motion respects prefers-reduced-motion.
    ============================================ */
 @media (prefers-reduced-motion: no-preference) {
-  a, button, [role="button"], summary,
-  input, select, textarea,
-  [role="option"], [role="menuitem"], [role="tab"], [role="radio"],
-  [data-slot="button"], [data-slot="badge"], [data-clickable="true"] {
+  a,
+  button,
+  [role="button"],
+  summary,
+  input,
+  select,
+  textarea,
+  [role="option"],
+  [role="menuitem"],
+  [role="tab"],
+  [role="radio"],
+  [data-slot="button"],
+  [data-slot="badge"],
+  [data-clickable="true"] {
     transition:
       color 180ms ease,
       background-color 180ms ease,
@@ -557,10 +578,13 @@
     border-color: var(--color-border-accent);
     box-shadow: var(--shadow-lg);
     transform: translateY(-3px);
-    background-color: color-mix(in oklab, var(--color-brand-secondary) 6%, var(--color-background-elevated));
+    background-color: color-mix(
+      in oklab,
+      var(--color-brand-secondary) 6%,
+      var(--color-background-elevated)
+    );
   }
 }
-
 
 @utility hover-lift {
   will-change: transform;
@@ -579,15 +603,21 @@
 
 @utility icon-nudge {
   transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  .group:hover & { transform: translateX(3px); }
-  [dir="rtl"] .group:hover & { transform: translateX(-3px); }
+  .group:hover & {
+    transform: translateX(3px);
+  }
+  [dir="rtl"] .group:hover & {
+    transform: translateX(-3px);
+  }
 }
 
 @utility icon-pop {
   transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
   .group:hover &,
   .group:focus-visible &,
-  .group:focus-within & { transform: scale(1.12); }
+  .group:focus-within & {
+    transform: scale(1.12);
+  }
 }
 
 @utility icon-wiggle {
@@ -595,10 +625,14 @@
   transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
   .group:hover &,
   .group:focus-visible &,
-  .group:focus-within & { transform: rotate(-8deg) scale(1.08); }
+  .group:focus-within & {
+    transform: rotate(-8deg) scale(1.08);
+  }
   [dir="rtl"] .group:hover &,
   [dir="rtl"] .group:focus-visible &,
-  [dir="rtl"] .group:focus-within & { transform: rotate(8deg) scale(1.08); }
+  [dir="rtl"] .group:focus-within & {
+    transform: rotate(8deg) scale(1.08);
+  }
 }
 
 @utility link-underline {
@@ -615,14 +649,20 @@
     transform-origin: left;
     transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
-  [dir="rtl"] &::after { transform-origin: right; }
+  [dir="rtl"] &::after {
+    transform-origin: right;
+  }
   &:hover::after,
-  &:focus-visible::after { transform: scaleX(1); }
+  &:focus-visible::after {
+    transform: scaleX(1);
+  }
 }
 
 @utility press-scale {
   transition: transform 150ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  &:active { transform: scale(0.94); }
+  &:active {
+    transform: scale(0.94);
+  }
 }
 
 @utility field-interaction {
@@ -650,20 +690,32 @@
     box-shadow: 0 10px 30px -8px color-mix(in oklab, var(--color-interactive-cta) 60%, transparent);
     transform: translateY(-1px);
   }
-  &:active { transform: translateY(0) scale(0.98); }
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
 }
 
 @keyframes enr-reveal-up {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 @utility reveal-up {
   animation: enr-reveal-up 500ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 @keyframes enr-shimmer {
-  from { background-position: -200% 0; }
-  to   { background-position: 200% 0; }
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
 }
 @utility shimmer {
   background-image: linear-gradient(
@@ -687,7 +739,9 @@
 }
 .route-card__img {
   transform: translate3d(0, 0, 0) scale(1.001); /* prevent sub-pixel edge shimmer */
-  transition: filter 700ms ease-out, transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    filter 700ms ease-out,
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
   filter: saturate(0.9);
 }
 .route-card:hover .route-card__img,
@@ -719,14 +773,30 @@
 }
 
 @keyframes enr-train-travel {
-  0%   { inset-inline-start: 0%;   transform: translate(0, -50%) scaleX(1); }
-  55%  { transform: translate(0, -50%) scaleX(2.2); } /* motion-blur stretch at peak speed */
-  100% { inset-inline-start: 100%; transform: translate(-100%, -50%) scaleX(1); }
+  0% {
+    inset-inline-start: 0%;
+    transform: translate(0, -50%) scaleX(1);
+  }
+  55% {
+    transform: translate(0, -50%) scaleX(2.2);
+  } /* motion-blur stretch at peak speed */
+  100% {
+    inset-inline-start: 100%;
+    transform: translate(-100%, -50%) scaleX(1);
+  }
 }
 @keyframes enr-train-travel-rtl {
-  0%   { inset-inline-start: 100%; transform: translate(-100%, -50%) scaleX(1); }
-  55%  { transform: translate(-100%, -50%) scaleX(2.2); }
-  100% { inset-inline-start: 0%;   transform: translate(0, -50%) scaleX(1); }
+  0% {
+    inset-inline-start: 100%;
+    transform: translate(-100%, -50%) scaleX(1);
+  }
+  55% {
+    transform: translate(-100%, -50%) scaleX(2.2);
+  }
+  100% {
+    inset-inline-start: 0%;
+    transform: translate(0, -50%) scaleX(1);
+  }
 }
 
 .route-card__arrow {
@@ -749,7 +819,10 @@
     animation: none !important;
     transform: none !important;
   }
-  .route-card__train { opacity: 1; inset-inline-start: 50%; }
+  .route-card__train {
+    opacity: 1;
+    inset-inline-start: 50%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -767,7 +840,9 @@
     animation: none !important;
     transform: none !important;
   }
-  .link-underline::after { transition: none !important; }
+  .link-underline::after {
+    transition: none !important;
+  }
 }
 
 /* ==========================================================================
@@ -775,17 +850,22 @@
  * Strips out non-content chrome so a ticket prints on a single page.
  * ========================================================================== */
 @media print {
-  html, body {
+  html,
+  body {
     background: #ffffff !important;
     color: #000000 !important;
   }
   /* Hide interactive chrome and navigation */
-  header, nav, footer,
+  header,
+  nav,
+  footer,
   [data-print="hide"],
   .no-print {
     display: none !important;
   }
-  main { padding: 0 !important; }
+  main {
+    padding: 0 !important;
+  }
   /* Enforce black-on-white for legibility on any printer */
   * {
     color: #000 !important;
@@ -793,7 +873,9 @@
     box-shadow: none !important;
     text-shadow: none !important;
   }
-  a { text-decoration: underline; }
+  a {
+    text-decoration: underline;
+  }
   /* Encourage the ticket block to stay together */
   .print-ticket {
     display: block !important;
@@ -802,9 +884,12 @@
     padding: 16px;
     margin: 16px 0;
   }
-  .print-only { display: block !important; }
+  .print-only {
+    display: block !important;
+  }
 }
 @media not print {
-  .print-only { display: none !important; }
+  .print-only {
+    display: none !important;
+  }
 }
-

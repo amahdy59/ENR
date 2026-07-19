@@ -20,8 +20,17 @@ export const Route = createFileRoute("/{-$locale}/_authenticated/account/travell
     const isAr = params.locale === "ar";
     return {
       meta: [
-        { title: isAr ? "المسافرون المحفوظون — الهيئة القومية لسكك حديد مصر" : "Saved travellers — ENR" },
-        { name: "description", content: isAr ? "إدارة المسافرين المحفوظين للحجز الأسرع." : "Manage saved travellers for faster ENR bookings." },
+        {
+          title: isAr
+            ? "المسافرون المحفوظون — الهيئة القومية لسكك حديد مصر"
+            : "Saved travellers — ENR",
+        },
+        {
+          name: "description",
+          content: isAr
+            ? "إدارة المسافرين المحفوظين للحجز الأسرع."
+            : "Manage saved travellers for faster ENR bookings.",
+        },
         { name: "robots", content: "noindex" },
       ],
     };
@@ -50,7 +59,10 @@ function TravellersPage() {
       <PageHeader
         eyebrow={bi("Account", "الحساب")}
         title={bi("Saved travellers", "المسافرون المحفوظون")}
-        subtitle={bi("Book faster with saved passenger details.", "احجز أسرع ببيانات ركاب محفوظة مسبقاً.")}
+        subtitle={bi(
+          "Book faster with saved passenger details.",
+          "احجز أسرع ببيانات ركاب محفوظة مسبقاً.",
+        )}
       />
       <ContentSection>
         <button className="mb-6 inline-flex items-center gap-2 rounded-lg bg-[color:var(--color-brand-primary)] px-4 py-2 text-sm font-semibold text-white">
@@ -58,20 +70,29 @@ function TravellersPage() {
         </button>
 
         {loading ? (
-          <p className="text-sm text-[color:var(--color-text-tertiary)]">{bi("Loading…", "جارٍ التحميل…")}</p>
+          <p className="text-sm text-[color:var(--color-text-tertiary)]">
+            {bi("Loading…", "جارٍ التحميل…")}
+          </p>
         ) : rows.length === 0 ? (
           <div className="grid place-items-center rounded-2xl border border-dashed border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] p-12 text-center">
-            <p className="text-sm text-[color:var(--color-text-secondary)]">{bi("No saved travellers yet.", "لا يوجد مسافرون محفوظون حتى الآن.")}</p>
+            <p className="text-sm text-[color:var(--color-text-secondary)]">
+              {bi("No saved travellers yet.", "لا يوجد مسافرون محفوظون حتى الآن.")}
+            </p>
           </div>
         ) : (
           <ul className="grid grid-cols-1 gap-3 md:grid-cols-2">
             {rows.map((t) => (
-              <li key={t.id} className="rounded-2xl border border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] p-5">
+              <li
+                key={t.id}
+                className="rounded-2xl border border-[color:var(--color-border-default)] bg-[color:var(--color-background-elevated)] p-5"
+              >
                 <p className="font-bold text-[color:var(--color-text-brand)]">
                   {[t.title, t.first_name, t.last_name].filter(Boolean).join(" ")}
                 </p>
                 {t.nationality && (
-                  <p className="text-sm text-[color:var(--color-text-secondary)]">{t.nationality}</p>
+                  <p className="text-sm text-[color:var(--color-text-secondary)]">
+                    {t.nationality}
+                  </p>
                 )}
               </li>
             ))}
