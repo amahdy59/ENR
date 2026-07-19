@@ -1,0 +1,108 @@
+{
+  "meta": {
+    "title": "ENR — Plan your journey across Egypt",
+    "description": "Book tickets, plan journeys, and manage travel across Egypt's national rail network."
+  },
+  "hero": {
+    "eyebrow": "Search 350+ stations across Egypt",
+    "titleLine1": "Plan Your Journey",
+    "titleLine2": "Across Egypt",
+    "subtitle": "Fast, comfortable rail travel connecting Cairo, Alexandria, Luxor, Aswan and beyond.",
+    "bullets": {
+      "eticket": "Instant e-ticket",
+      "noAccount": "No account required",
+      "payments": "Egyptian payment methods"
+    }
+  },
+  "planner": {
+    "tripOneWay": "One Way",
+    "tripReturn": "Return",
+    "requiredNote": "* All fields marked with an asterisk are required",
+    "from": "From",
+    "to": "To",
+    "fromPlaceholder": "Departure station or city",
+    "toPlaceholder": "Arrival station or city",
+    "fromHelper": "e.g. Cairo Central, Luxor, Aswan",
+    "toHelper": "e.g. Alexandria Misr, Mansoura, Aswan",
+    "swap": "Swap From and To stations",
+    "date": "Date of Travel",
+    "dateHelper": "Bookings open up to 90 days ahead",
+    "returnDate": "Return Date",
+    "returnDateHelper": "Select your return travel date",
+    "passengers": "Passengers",
+    "passengersHelper": "Up to 9 passengers · children under 4 travel free",
+    "addReturn": "Add return date",
+    "submit": "Find Trains",
+    "selectDate": "Select a date",
+    "trustline": "Secure booking · No account required · Instant e-ticket",
+    "accessibility": "Need accessibility assistance? Book here",
+    "required": "required",
+    "errors": {
+      "fromRequired": "Enter a departure station",
+      "toRequired": "Enter an arrival station",
+      "sameStation": "Departure and arrival stations must be different",
+      "dateRequired": "Choose a travel date",
+      "datePast": "Travel date can't be in the past",
+      "returnRequired": "Choose a return date",
+      "returnBeforeDate": "Return date must be on or after travel date",
+      "passengersRange": "Choose between 1 and 9 passengers"
+    }
+  },
+  "quickLinks": {
+    "alerts": {
+      "title": "Service Alerts",
+      "sub": "{{count}} active"
+    },
+    "stations": {
+      "title": "Station Finder",
+      "sub": "350+ stations"
+    },
+    "timetables": {
+      "title": "Timetables",
+      "sub": "Live & downloadable"
+    },
+    "assistance": {
+      "title": "Travel Assistance",
+      "sub": "Pre-book support"
+    }
+  },
+  "alert": {
+    "line": "Cairo – Alexandria line:",
+    "body": "delays of up to 40 minutes due to engineering works.",
+    "updated": "Updated 5 min ago",
+    "seeAlternatives": "See alternatives",
+    "dismiss": "Dismiss alert"
+  },
+  "routes": {
+    "title": "Popular Routes",
+    "subtitle": "Discover Egypt by rail",
+    "viewAll": "View all routes",
+    "viewTrains": "View trains",
+    "from": "From {{price}}",
+    "durationSuffix": "Trains every {{freq}}",
+    "cards": {
+      "alex": { "title": "Cairo → Alexandria", "duration": "2h 45m", "freq": "30 min", "price": "75 EGP", "tag1": "WiFi", "tag2": "AC" },
+      "luxor": { "title": "Cairo → Luxor", "duration": "9h 30m", "freq": "3 services daily", "price": "180 EGP", "tag1": "Sleeper available" },
+      "aswan": { "title": "Cairo → Aswan", "duration": "12h", "freq": "Overnight service", "price": "210 EGP", "tag1": "Sleeper cabin" },
+      "matrouh": { "title": "Alexandria → Marsa Matrouh", "duration": "3h 20m", "freq": "Summer seasonal", "price": "95 EGP", "tag1": "Scenic coastal route" }
+    }
+  },
+  "news": {
+    "title": "News & Updates",
+    "subtitle": "Latest from ENR",
+    "viewAll": "View all"
+  },
+  "plan": {
+    "title": "Plan with ENR",
+    "subtitle": "Everything you need for a smooth journey",
+    "cards": {
+      "timetables": { "title": "Timetables & Maps", "body": "Download the full October 2025 timetable as PDF.", "cta": "Download" },
+      "stations": { "title": "Stations", "body": "Search 350+ ENR stations across Egypt.", "cta": "Find station" },
+      "assist": { "title": "Accessibility & Assistance", "body": "Pre-book support, ramps, wheelchair space and priority seating.", "cta": "Book support" }
+    }
+  },
+  "social": {
+    "title": "Stay Connected",
+    "subtitle": "Follow ENR for updates, alerts and offers"
+  }
+}

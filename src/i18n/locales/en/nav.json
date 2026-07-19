@@ -1,0 +1,46 @@
+{
+  "primary": {
+    "plan": "Plan Journey",
+    "tickets": "Tickets & Fares",
+    "stations": "Stations",
+    "timetable": "Timetables",
+    "travelInfo": "Travel Info"
+  },
+  "footer": {
+    "travel": {
+      "title": "Travel",
+      "plan": "Plan a journey",
+      "timetables": "Timetables",
+      "live": "Live departures",
+      "alerts": "Service alerts"
+    },
+    "tickets": {
+      "title": "Tickets",
+      "fares": "Fares",
+      "passes": "Season passes",
+      "discounts": "Discounts",
+      "group": "Group bookings"
+    },
+    "network": {
+      "title": "Stations & Network",
+      "find": "Find a station",
+      "map": "Network map",
+      "lines": "Lines",
+      "accessibility": "Accessibility"
+    },
+    "about": {
+      "title": "About ENR",
+      "us": "About us",
+      "news": "News",
+      "careers": "Careers",
+      "contact": "Contact"
+    }
+  },
+  "mobile": {
+    "home": "Home",
+    "search": "Search",
+    "tickets": "Tickets",
+    "account": "Account",
+    "more": "More"
+  }
+}

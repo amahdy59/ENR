@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Do not index user-specific pages
+Disallow: /account/
+Disallow: /ar/account/
+Disallow: /auth
+Disallow: /ar/auth
+Disallow: /passenger
+Disallow: /ar/passenger
+Disallow: /payment
+Disallow: /ar/payment
+Disallow: /confirmation
+Disallow: /ar/confirmation
+
+Sitemap: /sitemap.xml

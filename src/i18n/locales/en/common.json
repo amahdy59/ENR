@@ -1,0 +1,41 @@
+{
+  "brand": "ENR",
+  "brandFull": "Egyptian National Railways",
+  "language": {
+    "switchTo": "Switch to Arabic",
+    "current": "English",
+    "toggleLabel": "Language",
+    "englishShort": "EN",
+    "arabicShort": "AR"
+  },
+  "actions": {
+    "signIn": "Sign in",
+    "account": "Account",
+    "menu": "Menu",
+    "close": "Close",
+    "skipToContent": "Skip to main content",
+    "returnHome": "Return home",
+    "tryAgain": "Try again",
+    "goHome": "Go home",
+    "backToTop": "Back to top"
+
+  },
+  "errors": {
+    "notFoundTitle": "Page not found",
+    "notFoundBody": "The page you're looking for doesn't exist or has been moved.",
+    "errorTitle": "This page didn't load",
+    "errorBody": "Something went wrong on our end. You can try refreshing or head back home."
+  },
+  "footer": {
+    "rights": "© {{year}} Egyptian National Railways. All rights reserved.",
+    "social": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "youtube": "YouTube"
+    }
+  },
+  "legal": {
+    "government": "© {{year}} Egyptian National Railways · Government of Egypt."
+  }
+}

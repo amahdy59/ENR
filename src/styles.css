@@ -1,0 +1,810 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+/* Support both `.dark` (shadcn) and `[data-theme="dark"]` on <html> */
+@custom-variant dark (&:is(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
+@custom-variant rtl (&:where([dir="rtl"], [dir="rtl"] *));
+
+/* Auto-flip directional arrows in RTL contexts. Apply to inline SVG icons
+   (chevrons, arrows) whose meaning is "forward/back" rather than a fixed
+   compass direction. */
+@utility rtl-flip {
+  [dir="rtl"] & { transform: scaleX(-1); }
+}
+
+/*
+ * ENR (Egyptian Railway) Design System
+ * Font: Inter. Light default; dark via .dark class or data-theme="dark".
+ * All color tokens map to CSS variables defined per theme below so switching
+ * themes automatically updates every consumer.
+ */
+
+@theme inline {
+  /* Radii */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+
+  /* Fonts */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Shadcn semantic tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* ENR Brand — reference vars so they retheme */
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-brand-primary-tint: var(--brand-primary-tint);
+  --color-brand-gold: var(--brand-gold);
+  --color-brand-navy-deep: var(--brand-navy-deep);
+
+  /* Backgrounds */
+  --color-background-base: var(--bg-base);
+  --color-background-surface: var(--bg-surface);
+  --color-background-elevated: var(--bg-elevated);
+  --color-background-muted: var(--bg-muted);
+  --color-background-warm: var(--bg-muted);
+  --color-background-nav-bar: var(--bg-nav-bar);
+
+  /* Text */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-dark: var(--text-dark);
+  --color-text-placeholder: var(--text-placeholder);
+  --color-text-inverse: var(--text-inverse);
+  --color-text-brand: var(--text-brand);
+  --color-text-accent: var(--text-accent);
+  --color-text-price-accent: var(--text-accent);
+  --color-text-nav-inactive: var(--text-nav-inactive);
+  /* Always-bright gold reserved for text/icons on the dark navy nav bar & hero
+     overlays. Constant across themes so it stays AAA on #0d1f3c. */
+  --color-text-on-dark-accent: #fbbf24;
+
+  /* Borders */
+  --color-border-default: var(--border-default);
+  --color-border-medium: var(--border-medium);
+  --color-border-strong: var(--border-strong);
+  --color-border-brand: var(--border-brand);
+  --color-border-accent: var(--border-accent);
+
+  /* Interactive */
+  --color-interactive-primary: var(--interactive-primary);
+  --color-interactive-primary-hover: var(--interactive-primary-hover);
+  --color-interactive-cta: var(--interactive-cta);
+  --color-interactive-cta-text: var(--interactive-cta-text);
+  --color-interactive-focus-ring: var(--interactive-focus-ring);
+  --color-interactive-disabled: var(--interactive-disabled);
+
+  /* Status */
+  --color-status-success: var(--status-success);
+  --color-status-success-vivid: var(--status-success-vivid);
+  --color-status-success-text: var(--status-success);
+  --color-status-success-bg: var(--status-success-bg);
+  --color-status-warning: var(--status-warning);
+  --color-status-warning-bg: var(--status-warning-bg);
+  --color-status-error: var(--status-error);
+  --color-status-error-vivid: var(--status-error-vivid);
+  --color-status-error-bg: var(--status-error-bg);
+  --color-status-info: var(--status-info);
+  --color-status-info-bg: var(--status-info-bg);
+
+  /* Spacing scale (4px base) */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+  --spacing-20: 80px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.13);
+  --shadow-2xl: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   Light theme (default)
+   ============================================ */
+:root,
+[data-theme="light"] {
+  --radius: 8px;
+
+  /* Brand */
+  --brand-primary: #0d1f3c;
+  --brand-secondary: #c8902a;
+  --brand-primary-tint: #eef2f8;
+  --brand-gold: #d4af37;
+  --brand-navy-deep: #002d62;
+
+  /* Background */
+  --bg-base: #ffffff;
+  --bg-surface: #f9fafb;
+  --bg-elevated: #ffffff;
+  --bg-muted: #f3f4f6;
+  --bg-nav-bar: #0d1f3c;
+
+  /* Text */
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --text-tertiary: #454c58;
+  --text-dark: #344054;
+  --text-placeholder: #4b5563;
+  --text-inverse: #ffffff;
+  --text-brand: #0d1f3c;
+  --text-accent: #7c2d12;
+  --text-nav-inactive: #cbd5e1;
+
+  /* Border */
+  --border-default: #e5e7eb;
+  --border-medium: #d1d5da;
+  --border-strong: #6b7280;
+  --border-brand: #0d1f3c;
+  --border-accent: #c8902a;
+
+  /* Interactive */
+  --interactive-primary: #0d1f3c;
+  --interactive-primary-hover: #1a3a6b;
+  --interactive-cta: #f59e0b;
+  --interactive-cta-text: #0d1f3c;
+  --interactive-focus-ring: #b45309;
+  --interactive-disabled: #9ca3af;
+
+  /* Status */
+  --status-success: #14532d;
+  --status-success-bg: #dcfce7;
+  --status-success-vivid: #079455;
+  --status-warning: #78350f;
+  --status-warning-bg: #fef3c7;
+  --status-error: #7f1d1d;
+  --status-error-bg: #fee2e2;
+  --status-error-vivid: #d92d20;
+  --status-info: #1e3a8a;
+  --status-info-bg: #eef4ff;
+
+  /* Shadcn semantic aliases */
+  --background: var(--bg-base);
+  --foreground: var(--text-primary);
+  --card: var(--bg-elevated);
+  --card-foreground: var(--text-primary);
+  --popover: var(--bg-elevated);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--interactive-primary);
+  --primary-foreground: var(--text-inverse);
+  --secondary: var(--brand-primary-tint);
+  --secondary-foreground: var(--brand-primary);
+  --muted: var(--bg-muted);
+  --muted-foreground: var(--text-tertiary);
+  --accent: var(--brand-secondary);
+  --accent-foreground: #0d1f3c;
+  --destructive: var(--status-error);
+  --destructive-foreground: var(--text-inverse);
+  --border: var(--border-default);
+  --input: var(--border-default);
+  --ring: var(--interactive-focus-ring);
+
+  --sidebar: var(--bg-nav-bar);
+  --sidebar-foreground: var(--text-inverse);
+  --sidebar-primary: var(--brand-secondary);
+  --sidebar-primary-foreground: var(--text-inverse);
+  --sidebar-accent: #1a3a6b;
+  --sidebar-accent-foreground: var(--text-inverse);
+  --sidebar-border: #1a3a6b;
+  --sidebar-ring: var(--interactive-focus-ring);
+}
+
+/* ============================================
+   Dark theme — .dark class OR data-theme="dark"
+   ============================================ */
+.dark,
+[data-theme="dark"] {
+  /* Brand */
+  --brand-primary: #0d1f3c;
+  --brand-secondary: #fbbf24;
+  --brand-primary-tint: #1e293b;
+  --brand-gold: #fbbf24;
+  --brand-navy-deep: #1e3a5a;
+
+  /* Background */
+  --bg-base: #0f172a;
+  --bg-surface: #1e293b;
+  --bg-elevated: #1f2d40;
+  --bg-muted: #1a2332;
+  --bg-nav-bar: #0a1628;
+
+  /* Text */
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #b8c5d6;
+  --text-dark: #cbd5e1;
+  --text-placeholder: #c8d4e0;
+  --text-inverse: #ffffff;
+  --text-brand: #f1f5f9;
+  --text-accent: #fbbf24;
+  --text-nav-inactive: #cbd5e1;
+
+  /* Border */
+  --border-default: #334155;
+  --border-medium: #3d4e63;
+  --border-strong: #475569;
+  --border-brand: #3b82f6;
+  --border-accent: #fbbf24;
+
+  /* Interactive */
+  --interactive-primary: #60a5fa;
+  --interactive-primary-hover: #93c5fd;
+  --interactive-cta: #fbbf24;
+  --interactive-cta-text: #0f172a;
+  --interactive-focus-ring: #fbbf24;
+  --interactive-disabled: #334155;
+
+  /* Status */
+  --status-success: #4ade80;
+  --status-success-bg: #052e16;
+  --status-success-vivid: #34d399;
+  --status-warning: #fcd34d;
+  --status-warning-bg: #431407;
+  --status-error: #fca5a5;
+  --status-error-bg: #450a0a;
+  --status-error-vivid: #f87171;
+  --status-info: #93c5fd;
+  --status-info-bg: #1e293b;
+
+  /* Shadcn semantic aliases */
+  --background: var(--bg-base);
+  --foreground: var(--text-primary);
+  --card: var(--bg-elevated);
+  --card-foreground: var(--text-primary);
+  --popover: var(--bg-elevated);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--interactive-primary);
+  --primary-foreground: #0f172a;
+  --secondary: var(--bg-surface);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--bg-muted);
+  --muted-foreground: var(--text-tertiary);
+  --accent: var(--brand-gold);
+  --accent-foreground: #0f172a;
+  --destructive: var(--status-error-vivid);
+  --destructive-foreground: #0f172a;
+  --border: var(--border-default);
+  --input: var(--border-medium);
+  --ring: var(--interactive-focus-ring);
+
+  --sidebar: var(--bg-nav-bar);
+  --sidebar-foreground: var(--text-inverse);
+  --sidebar-primary: var(--brand-gold);
+  --sidebar-primary-foreground: #0f172a;
+  --sidebar-accent: var(--bg-surface);
+  --sidebar-accent-foreground: var(--text-inverse);
+  --sidebar-border: var(--border-default);
+  --sidebar-ring: var(--interactive-focus-ring);
+}
+
+/* System preference fallback when no explicit theme is set */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not(.light) {
+    /* Brand */
+    --brand-primary: #0d1f3c;
+    --brand-secondary: #fbbf24;
+    --brand-primary-tint: #1e293b;
+    --brand-gold: #fbbf24;
+    --brand-navy-deep: #1e3a5a;
+
+    /* Background */
+    --bg-base: #0f172a;
+    --bg-surface: #1e293b;
+    --bg-elevated: #1f2d40;
+    --bg-muted: #1a2332;
+    --bg-nav-bar: #0a1628;
+
+    /* Text */
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-tertiary: #b8c5d6;
+    --text-dark: #cbd5e1;
+    --text-placeholder: #c8d4e0;
+    --text-inverse: #ffffff;
+    --text-brand: #f1f5f9;
+    --text-accent: #fbbf24;
+    --text-nav-inactive: #cbd5e1;
+
+    /* Border */
+    --border-default: #334155;
+    --border-medium: #3d4e63;
+    --border-strong: #475569;
+    --border-brand: #3b82f6;
+    --border-accent: #fbbf24;
+
+    /* Interactive */
+    --interactive-primary: #60a5fa;
+    --interactive-primary-hover: #93c5fd;
+    --interactive-cta: #fbbf24;
+    --interactive-cta-text: #0f172a;
+    --interactive-focus-ring: #fbbf24;
+    --interactive-disabled: #334155;
+
+    /* Status */
+    --status-success: #4ade80;
+    --status-success-bg: #052e16;
+    --status-success-vivid: #34d399;
+    --status-warning: #fcd34d;
+    --status-warning-bg: #431407;
+    --status-error: #fca5a5;
+    --status-error-bg: #450a0a;
+    --status-error-vivid: #f87171;
+    --status-info: #93c5fd;
+    --status-info-bg: #1e293b;
+
+    /* Shadcn semantic aliases */
+    --background: var(--bg-base);
+    --foreground: var(--text-primary);
+    --card: var(--bg-elevated);
+    --card-foreground: var(--text-primary);
+    --popover: var(--bg-elevated);
+    --popover-foreground: var(--text-primary);
+    --primary: var(--interactive-primary);
+    --primary-foreground: var(--text-inverse);
+    --secondary: var(--bg-surface);
+    --secondary-foreground: var(--text-primary);
+    --muted: var(--bg-muted);
+    --muted-foreground: var(--text-tertiary);
+    --accent: var(--brand-gold);
+    --accent-foreground: #0f172a;
+    --destructive: var(--status-error-vivid);
+    --destructive-foreground: #0f172a;
+    --border: var(--border-default);
+    --input: var(--border-medium);
+    --ring: var(--interactive-focus-ring);
+
+    --sidebar: var(--bg-nav-bar);
+    --sidebar-foreground: var(--text-inverse);
+    --sidebar-primary: var(--brand-gold);
+    --sidebar-primary-foreground: #0f172a;
+    --sidebar-accent: var(--bg-surface);
+    --sidebar-accent-foreground: var(--text-inverse);
+    --sidebar-border: var(--border-default);
+    --sidebar-ring: var(--interactive-focus-ring);
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+
+  /* ============================================
+     Global keyboard focus indicators (WCAG 2.4.7)
+     A visible ring on every focusable element,
+     using a token that adapts per theme (amber
+     gold on light, bright gold on dark). The
+     inner background halo keeps the ring visible
+     over both dark-navy and light-neutral surfaces.
+     ============================================ */
+  :focus { outline: none; }
+
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  [role="link"]:focus-visible,
+  [role="menuitem"]:focus-visible,
+  [role="tab"]:focus-visible,
+  [role="checkbox"]:focus-visible,
+  [role="switch"]:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  summary:focus-visible,
+  [tabindex]:not([tabindex="-1"]):focus-visible {
+    outline: 3px solid var(--color-interactive-focus-ring);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 5px color-mix(in oklab, var(--color-background) 80%, transparent);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Skip-to-content link — visible only on focus */
+  .skip-to-content {
+    position: absolute;
+    left: 12px;
+    top: -100px;
+    z-index: 100;
+    padding: 10px 16px;
+    background: var(--color-interactive-cta);
+    color: var(--color-interactive-cta-text);
+    font-weight: 700;
+    border-radius: var(--radius-md);
+    transition: top 150ms ease-in-out;
+  }
+  .skip-to-content:focus,
+  .skip-to-content:focus-visible {
+    top: 12px;
+    outline: 3px solid var(--color-interactive-focus-ring);
+    outline-offset: 2px;
+  }
+
+  a[href],
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [role="link"]:not([aria-disabled="true"]),
+  [role="menuitem"]:not([aria-disabled="true"]),
+  [role="tab"]:not([aria-disabled="true"]),
+  [role="radio"]:not([aria-disabled="true"]),
+  [role="option"]:not([aria-disabled="true"]),
+  summary,
+  [data-clickable="true"] {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [aria-disabled="true"],
+  [disabled] {
+    cursor: not-allowed;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skip-to-content { transition: none; }
+  }
+}
+
+/* ============================================
+   Motion system — micro-interactions.
+   All motion respects prefers-reduced-motion.
+   ============================================ */
+@media (prefers-reduced-motion: no-preference) {
+  a, button, [role="button"], summary,
+  input, select, textarea,
+  [role="option"], [role="menuitem"], [role="tab"], [role="radio"],
+  [data-slot="button"], [data-slot="badge"], [data-clickable="true"] {
+    transition:
+      color 180ms ease,
+      background-color 180ms ease,
+      border-color 180ms ease,
+      box-shadow 220ms ease,
+      transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      opacity 180ms ease;
+  }
+
+  a[href]:not(.skip-to-content),
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [role="menuitem"]:not([aria-disabled="true"]),
+  [role="tab"]:not([aria-disabled="true"]),
+  [role="radio"]:not([aria-disabled="true"]),
+  [role="option"]:not([aria-disabled="true"]),
+  [data-clickable="true"] {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button:not(:disabled):hover,
+  [role="button"]:not([aria-disabled="true"]):hover,
+  [role="tab"]:not([aria-disabled="true"]):hover,
+  [role="radio"]:not([aria-disabled="true"]):hover,
+  [data-slot="button"]:not(:disabled):hover {
+    transform: translateY(-1px);
+  }
+
+  button:not(:disabled):active,
+  [role="button"]:not([aria-disabled="true"]):active,
+  [role="tab"]:not([aria-disabled="true"]):active,
+  [role="radio"]:not([aria-disabled="true"]):active,
+  [data-slot="button"]:not(:disabled):active,
+  [data-clickable="true"]:active {
+    transform: scale(0.97);
+  }
+}
+
+@utility interactive-surface {
+  position: relative;
+  transition:
+    transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 240ms ease,
+    border-color 240ms ease,
+    background-color 200ms ease;
+  &:hover,
+  &:focus-within {
+    border-color: var(--color-border-accent);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+    background-color: color-mix(in oklab, var(--color-brand-secondary) 6%, var(--color-background-elevated));
+  }
+}
+
+
+@utility hover-lift {
+  will-change: transform;
+  transition:
+    transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 240ms ease,
+    border-color 240ms ease;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+  &:focus-visible {
+    transform: translateY(-2px);
+  }
+}
+
+@utility icon-nudge {
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  .group:hover & { transform: translateX(3px); }
+  [dir="rtl"] .group:hover & { transform: translateX(-3px); }
+}
+
+@utility icon-pop {
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  .group:hover &,
+  .group:focus-visible &,
+  .group:focus-within & { transform: scale(1.12); }
+}
+
+@utility icon-wiggle {
+  transform-origin: center;
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  .group:hover &,
+  .group:focus-visible &,
+  .group:focus-within & { transform: rotate(-8deg) scale(1.08); }
+  [dir="rtl"] .group:hover &,
+  [dir="rtl"] .group:focus-visible &,
+  [dir="rtl"] .group:focus-within & { transform: rotate(8deg) scale(1.08); }
+}
+
+@utility link-underline {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    bottom: -2px;
+    height: 2px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  [dir="rtl"] &::after { transform-origin: right; }
+  &:hover::after,
+  &:focus-visible::after { transform: scaleX(1); }
+}
+
+@utility press-scale {
+  transition: transform 150ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  &:active { transform: scale(0.94); }
+}
+
+@utility field-interaction {
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 220ms ease;
+  &:hover {
+    border-color: var(--color-border-medium);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-brand-primary) 8%, transparent);
+  }
+  &:focus,
+  &:focus-visible {
+    border-color: var(--color-border-accent);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-interactive-focus-ring) 18%, transparent);
+  }
+}
+
+@utility cta-glow {
+  transition:
+    box-shadow 260ms ease,
+    transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 200ms ease;
+  &:hover {
+    box-shadow: 0 10px 30px -8px color-mix(in oklab, var(--color-interactive-cta) 60%, transparent);
+    transform: translateY(-1px);
+  }
+  &:active { transform: translateY(0) scale(0.98); }
+}
+
+@keyframes enr-reveal-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@utility reveal-up {
+  animation: enr-reveal-up 500ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes enr-shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position: 200% 0; }
+}
+@utility shimmer {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in oklab, var(--color-background-elevated) 60%, transparent) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: enr-shimmer 1.6s linear infinite;
+}
+
+/* ==========================================================================
+ * Popular route cards — a train travels the rail on hover/focus.
+ * Rail-themed, subtle, purposeful. No lift, no zoom, no gradient wipe.
+ * All motion animates transform/opacity only and respects reduced motion.
+ * ========================================================================== */
+.route-card {
+  content-visibility: auto;
+  contain-intrinsic-size: 340px 380px;
+}
+.route-card__img {
+  transform: translate3d(0, 0, 0) scale(1.001); /* prevent sub-pixel edge shimmer */
+  transition: filter 700ms ease-out, transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  filter: saturate(0.9);
+}
+.route-card:hover .route-card__img,
+.route-card:focus-within .route-card__img {
+  filter: saturate(1.05);
+  transform: translate3d(-6px, 0, 0) scale(1.02); /* soft parallax pan, contained */
+}
+[dir="rtl"] .route-card:hover .route-card__img,
+[dir="rtl"] .route-card:focus-within .route-card__img {
+  transform: translate3d(6px, 0, 0) scale(1.02);
+}
+
+.route-card__train {
+  inset-inline-start: 0;
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+}
+.route-card:hover .route-card__train,
+.route-card:focus-within .route-card__train {
+  opacity: 1;
+  /* Faster travel (900ms) with a refined ease-out curve:
+     starts with a brief, deliberate roll-off, accelerates through the
+     middle, then decelerates smoothly into the destination. */
+  animation: enr-train-travel 900ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 40ms forwards;
+}
+[dir="rtl"] .route-card:hover .route-card__train,
+[dir="rtl"] .route-card:focus-within .route-card__train {
+  animation-name: enr-train-travel-rtl;
+}
+
+@keyframes enr-train-travel {
+  0%   { inset-inline-start: 0%;   transform: translate(0, -50%) scaleX(1); }
+  55%  { transform: translate(0, -50%) scaleX(2.2); } /* motion-blur stretch at peak speed */
+  100% { inset-inline-start: 100%; transform: translate(-100%, -50%) scaleX(1); }
+}
+@keyframes enr-train-travel-rtl {
+  0%   { inset-inline-start: 100%; transform: translate(-100%, -50%) scaleX(1); }
+  55%  { transform: translate(-100%, -50%) scaleX(2.2); }
+  100% { inset-inline-start: 0%;   transform: translate(0, -50%) scaleX(1); }
+}
+
+.route-card__arrow {
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.route-card:hover .route-card__arrow,
+.route-card:focus-within .route-card__arrow {
+  transform: translateX(4px);
+}
+[dir="rtl"] .route-card:hover .route-card__arrow,
+[dir="rtl"] .route-card:focus-within .route-card__arrow {
+  transform: translateX(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-card__img,
+  .route-card__train,
+  .route-card__arrow {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+  .route-card__train { opacity: 1; inset-inline-start: 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hover-lift,
+  .interactive-surface,
+  .icon-nudge,
+  .icon-pop,
+  .icon-wiggle,
+  .press-scale,
+  .field-interaction,
+  .cta-glow,
+  .reveal-up,
+  .shimmer {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+  .link-underline::after { transition: none !important; }
+}
+
+/* ==========================================================================
+ * Print stylesheet — used primarily by the ticket confirmation page.
+ * Strips out non-content chrome so a ticket prints on a single page.
+ * ========================================================================== */
+@media print {
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  /* Hide interactive chrome and navigation */
+  header, nav, footer,
+  [data-print="hide"],
+  .no-print {
+    display: none !important;
+  }
+  main { padding: 0 !important; }
+  /* Enforce black-on-white for legibility on any printer */
+  * {
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  a { text-decoration: underline; }
+  /* Encourage the ticket block to stay together */
+  .print-ticket {
+    display: block !important;
+    page-break-inside: avoid;
+    border: 1px solid #000;
+    padding: 16px;
+    margin: 16px 0;
+  }
+  .print-only { display: block !important; }
+}
+@media not print {
+  .print-only { display: none !important; }
+}
+

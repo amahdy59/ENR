@@ -1,0 +1,17 @@
+{
+  "name": "Egyptian National Railways",
+  "short_name": "ENR",
+  "description": "Book tickets, plan journeys, and manage travel across Egypt's national rail network.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#0D1F3C",
+  "background_color": "#0D1F3C",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["travel", "navigation"],
+  "icons": [
+    { "src": "/favicon.ico", "sizes": "48x48", "type": "image/x-icon" }
+  ]
+}
