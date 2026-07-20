@@ -64,7 +64,7 @@ async function main() {
   const page = await context.newPage();
 
   // --- Home page ---
-  await page.goto(`${BASE}/`, { waitUntil: "domcontentloaded" });
+  await page.goto(`${BASE}/`, { waitUntil: "domcontentloaded", timeout: 60000 });
   await page.waitForSelector("main");
   await runAxe(page, "Home (mobile)");
 
