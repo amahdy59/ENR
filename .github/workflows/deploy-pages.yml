@@ -36,6 +36,27 @@ jobs:
       - name: Build site
         run: npm run build
 
+      - name: Generate static index.html & 404.html for SPA fallback
+        run: |
+          CSS_FILE=$(basename $(ls .output/public/assets/styles-*.css | head -n 1))
+          CLIENT_JS=$(basename $(ls .output/public/assets/client-*.js | head -n 1))
+          cat <<EOF > .output/public/index.html
+          <!DOCTYPE html>
+          <html lang="en">
+            <head>
+              <meta charset="UTF-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+              <title>ENR — Egyptian National Railways</title>
+              <link rel="stylesheet" href="./assets/${CSS_FILE}" />
+            </head>
+            <body>
+              <div id="app"></div>
+              <script type="module" src="./assets/${CLIENT_JS}"></script>
+            </body>
+          </html>
+          EOF
+          cp .output/public/index.html .output/public/404.html
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
