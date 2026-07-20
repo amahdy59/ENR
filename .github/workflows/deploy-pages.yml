@@ -40,23 +40,20 @@ jobs:
 
       - name: Generate static index.html & 404.html for SPA fallback
         run: |
-          CSS_FILE=$(basename $(ls .output/public/assets/styles-*.css | head -n 1))
-          CLIENT_JS=$(basename $(ls .output/public/assets/index-*.js | head -n 1))
-          cat <<EOF > .output/public/index.html
-          <!DOCTYPE html>
-          <html lang="en">
-            <head>
-              <meta charset="UTF-8" />
-              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-              <title>ENR — Egyptian National Railways | الهيئة القومية لسكك حديد مصر</title>
-              <link rel="stylesheet" href="/ENR/assets/${CSS_FILE}" />
-            </head>
-            <body>
-              <script type="module" src="/ENR/assets/${CLIENT_JS}"></script>
-            </body>
-          </html>
-          EOF
-          cp .output/public/index.html .output/public/404.html
+          node -e "
+            import('fs/promises').then(fs => 
+              import('./.output/server/index.mjs').then(async m => { 
+                const res = await m.default.fetch(new Request('http://localhost/ENR/'), {}); 
+                const text = await res.text(); 
+                await fs.writeFile('.output/public/index.html', text); 
+                await fs.writeFile('.output/public/404.html', text); 
+                console.log('Successfully generated index.html and 404.html from Nitro server!');
+              })
+            ).catch(err => {
+              console.error(err);
+              process.exit(1);
+            });
+          "
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
