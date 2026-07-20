@@ -55,18 +55,28 @@ jobs:
         run: npm ci
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
-      - name: Start dev server
-        run: CI=true npm run dev -- --port 8080 --host < /dev/null &
-      - name: Wait for server
-        run: |
-          for i in {1..60}; do
-            if curl -sSf http://localhost:8080/ > /dev/null; then
-              echo "Server up"; exit 0
-            fi
-            sleep 1
-          done
-          echo "Server never came up"; exit 1
       - name: Run mobile a11y audit
         env:
           AUDIT_URL: http://localhost:8080
-        run: node scripts/audit-a11y-mobile.mjs
+        run: |
+          # Start dev server in the background
+          CI=true npm run dev -- --port 8080 --host < /dev/null &
+          
+          # Wait for server
+          echo "Waiting for server to start..."
+          SERVER_UP=false
+          for i in {1..60}; do
+            if curl -sSf http://localhost:8080/ > /dev/null; then
+              echo "Server up!"
+              SERVER_UP=true
+              break
+            fi
+            sleep 1
+          done
+          
+          if [ "$SERVER_UP" = false ]; then
+            echo "Server never came up"; exit 1
+          fi
+          
+          # Run the audit
+          node scripts/audit-a11y-mobile.mjs
