@@ -34,6 +34,8 @@ jobs:
         run: npm ci
 
       - name: Build site
+        env:
+          GITHUB_ACTIONS: "true"
         run: npm run build
 
       - name: Generate static index.html & 404.html for SPA fallback
@@ -46,12 +48,11 @@ jobs:
             <head>
               <meta charset="UTF-8" />
               <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-              <title>ENR — Egyptian National Railways</title>
-              <link rel="stylesheet" href="./assets/${CSS_FILE}" />
+              <title>ENR — Egyptian National Railways | الهيئة القومية لسكك حديد مصر</title>
+              <link rel="stylesheet" href="/ENR/assets/${CSS_FILE}" />
             </head>
             <body>
-              <div id="app"></div>
-              <script type="module" src="./assets/${CLIENT_JS}"></script>
+              <script type="module" src="/ENR/assets/${CLIENT_JS}"></script>
             </body>
           </html>
           EOF
