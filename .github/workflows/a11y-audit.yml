@@ -1,9 +1,4 @@
-name: Accessibility audits
-
-# Runs on every PR that touches UI, styles, or audit scripts. Two jobs:
-#   1. Fast static contrast audit over src/styles.css tokens (no browser).
-#   2. Playwright + axe-core audit of the mobile home + search page and
-#      each filter bottom sheet against WCAG 2.1 A/AA.
+name: Accessibility & Quality Audits
 
 on:
   pull_request:
@@ -13,13 +8,28 @@ on:
       - "scripts/audit-*.mjs"
       - ".github/workflows/a11y-audit.yml"
       - "package.json"
-      - "bun.lock"
-      - "bun.lockb"
+      - "package-lock.json"
   push:
     branches: [main]
   workflow_dispatch:
 
 jobs:
+  quality:
+    name: Code Quality & Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
+      - name: Run ESLint
+        run: npm run lint
+      - name: Run TypeScript typecheck
+        run: npx tsc --noEmit
+
   contrast:
     name: Token contrast (light + dark)
     runs-on: ubuntu-latest
@@ -37,17 +47,18 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v4
         with:
-          bun-version: latest
+          node-version: "20"
+          cache: "npm"
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: npm ci
       - name: Install Playwright Chromium
-        run: bunx playwright install --with-deps chromium
+        run: npx playwright install --with-deps chromium
       - name: Build (development mode)
-        run: bun run build:dev
+        run: npm run build:dev
       - name: Start preview server
-        run: bun run preview --port 8080 &
+        run: npm run preview -- --port 8080 &
       - name: Wait for server
         run: |
           for i in {1..60}; do
