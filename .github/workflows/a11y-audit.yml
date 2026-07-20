@@ -59,8 +59,8 @@ jobs:
         env:
           AUDIT_URL: http://localhost:8080
         run: |
-          # Start dev server in the background
-          CI=true npm run dev -- --port 8080 --host < /dev/null &
+          # Start dev server in the background (unset GITHUB_ACTIONS so base is /)
+          env -u GITHUB_ACTIONS CI=true npm run dev -- --port 8080 --host < /dev/null &
           
           # Wait for server
           echo "Waiting for server to start..."
