@@ -60,7 +60,7 @@ const HERO_IMAGES: Record<string, string> = {
 function StationDetail() {
   const bi = useBi();
   const { locale } = useLocale();
-  const { id } = Route.useParams();
+  const { id } = Route.useParams() as { id: string };
   const station = getStationDetail(id);
   if (!station) throw notFound();
 

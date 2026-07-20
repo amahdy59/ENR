@@ -138,7 +138,7 @@ export function HeroSection() {
     const fromId = resolveStationId(from);
     const toId = resolveStationId(to);
     navigate({
-      to: "/search",
+      to: "/search" as never,
       search: {
         from: fromId ?? from.trim(),
         to: toId ?? to.trim(),
