@@ -55,10 +55,8 @@ jobs:
         run: npm ci
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
-      - name: Build (development mode)
-        run: npm run build:dev
-      - name: Start preview server
-        run: npm run preview -- --port 8080 &
+      - name: Start dev server
+        run: npm run dev -- --port 8080 --host &
       - name: Wait for server
         run: |
           for i in {1..60}; do
